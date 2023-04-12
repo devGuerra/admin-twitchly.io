@@ -17,6 +17,7 @@ export function Button({
     <button
       className={`px-4 py-4 border-0 rounded-md flex flex-1 gap-2 items-center justify-center bg-red-600	 ${className}`}
       {...rest}
+      type="button"
     >
       {Icon && <Icon size={24} />}
       <p className="text-md text-white font-medium">{children}</p>
