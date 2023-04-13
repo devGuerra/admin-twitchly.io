@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex items-center justify-center py-20 min-h-full">
+      <main className="flex items-center justify-center py-20 pb-80 min-h-full">
         <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4 w-full lg:w-3/12">
           <p className="text:lg">Digite seu e-mail para redefinir sua senha:</p>
           <Input
