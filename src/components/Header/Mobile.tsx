@@ -10,7 +10,7 @@ export function HeaderMobile() {
 
   return (
     <div className="relative lg:hidden">
-      <header className=" flex items-center justify-between px-4 py-4 bg-white shadow-sm ">
+      <header className=" flex items-center justify-between px-6 py-4 bg-white shadow-sm ">
         <Link href="/" className="flex items-center gap-2 ">
           <Image
             src="/images/logo-name.svg"
@@ -39,7 +39,7 @@ export function HeaderMobile() {
           className="w-3/4"
         >
           <div className={`w-full absolut h-screen bg-white`}>
-            <ul className="p-4 ">
+            <ul className="p-6 ">
               <li className="flex flex-col gap-4 ">
                 {headerLinks.map((link) => (
                   <Link
