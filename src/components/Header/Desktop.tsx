@@ -3,6 +3,7 @@ import { UserCircle } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { headerLinks } from ".";
 
 export function HeaderDesktop() {
   return (
@@ -12,18 +13,15 @@ export function HeaderDesktop() {
         <p className="text-sm font-bold">SeuFilhote</p>
       </Link>
       <div className="flex items-center gap-8">
-        <Link href="#" className="text-xs font-semibold py-8">
-          Filhotes
-        </Link>
-        <Link href="#" className="text-xs font-semibold py-8">
-          Criadores
-        </Link>
-        <Link href="#" className="text-xs font-semibold py-8">
-          Blog
-        </Link>
-        <Link href="#" className="text-xs font-semibold py-8">
-          Sobre
-        </Link>
+        {headerLinks.map((link) => (
+          <Link
+            href={link.href}
+            key={link.name}
+            className="text-xs font-semibold py-8"
+          >
+            {link.name}
+          </Link>
+        ))}
       </div>
       <Link href="/login" className="flex items-center gap-2 w-32 justify-end">
         <UserCircle size={24} />
