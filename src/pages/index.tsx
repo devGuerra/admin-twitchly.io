@@ -1,16 +1,12 @@
-import Image from "next/image";
-import { UserCircle } from "@phosphor-icons/react";
-import Link from "next/link";
 import { Header } from "@/components/Header";
 import { useState } from "react";
-import { Switch } from "@headlessui/react";
+import { NextSeo } from "next-seo";
 
 export default function Home() {
-  const [enabled, setEnabled] = useState(false);
   return (
     <>
       <Header />
-
+      <NextSeo title="Seu filhote - A melhor Rede de Criadores do Brasil" />
       <main className=""></main>
     </>
   );
