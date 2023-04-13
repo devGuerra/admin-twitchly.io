@@ -6,6 +6,10 @@ import { HeaderMobile } from "./Mobile";
 
 export const headerLinks = [
   {
+    name: "Início",
+    href: "/",
+  },
+  {
     name: "Filhotes",
     href: "/filhotes",
   },

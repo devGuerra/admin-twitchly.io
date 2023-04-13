@@ -21,9 +21,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex items-center justify-center py-20">
+      <main className="flex items-center justify-center py-20 min-h-full">
         <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4 w-full lg:w-3/12">
-          <p className="text:lg">Digite o seu e-mail e senha</p>
+          <p className="text:lg">Digite seu e-mail para redefinir sua senha:</p>
           <Input
             icon={At}
             type="email"
@@ -31,22 +31,10 @@ export default function Home() {
             placeholder="Informe seu e-email"
             className="w-full"
           />
-          <Input
-            icon={Lock}
-            type="password"
-            id="password"
-            placeholder="Digite a senha"
-            className="w-full"
-          />
-          <Link
-            href="/login/recovery"
-            className="text-xs text-red-600 font-semibold"
-          >
-            Esqueci minha senha
-          </Link>
-          <Button>Entrar</Button>
-          <Link href="#" className="text-xs font-semibold text-center">
-            Não tem uma conta? <span className="text-red-600">Crie a sua</span>
+
+          <Button>Recuperar Senha</Button>
+          <Link href="/login" className="text-xs font-semibold text-center">
+            voltar
           </Link>
         </div>
       </main>
