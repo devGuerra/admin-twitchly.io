@@ -9,8 +9,7 @@ export function HeaderDesktop() {
   return (
     <nav className="items-center justify-between px-8  bg-white shadow-sm hidden lg:flex">
       <Link href="/" className="flex items-center gap-2 w-32">
-        <Image src="/images/logo.svg" alt="logo" width={32} height={32} />
-        <p className="text-sm font-bold">SeuFilhote</p>
+        <Image src="/images/logo-name.svg" alt="logo" width="128" height={32} />
       </Link>
       <div className="flex items-center gap-8">
         {headerLinks.map((link) => (

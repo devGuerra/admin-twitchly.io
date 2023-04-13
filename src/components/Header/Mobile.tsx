@@ -12,8 +12,12 @@ export function HeaderMobile() {
     <div className="relative lg:hidden">
       <header className=" flex items-center justify-between px-4 py-4 bg-white shadow-sm ">
         <Link href="/" className="flex items-center gap-2 ">
-          <Image src="/images/logo.svg" alt="logo" width={32} height={32} />
-          <p className="text-lg font-bold">SeuFilhote</p>
+          <Image
+            src="/images/logo-name.svg"
+            alt="logo"
+            width={128}
+            height={32}
+          />
         </Link>
 
         <div
