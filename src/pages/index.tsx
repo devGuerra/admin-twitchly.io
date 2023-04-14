@@ -70,37 +70,37 @@ export default function Home() {
               </h2>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Você sempre online.
                 </p>
               </div>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Seu catalogo na palma da mão.
                 </p>
               </div>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Menos tempo com perguntas repetitivas.
                 </p>
               </div>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Cadastro simples e rápido de seus filhotes.
                 </p>
               </div>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Adicione a arvore genealógica de seus filhotes.
                 </p>
               </div>
               <div className="flex flex-row gap-2">
                 <SealCheck size={24} color="#27AE60" />
-                <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                <p className="text:md lg:text-lg text-left text-gray-600">
                   Compartilhe seu site com seus clientes.
                 </p>
               </div>
@@ -130,7 +130,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* Waiting list */}
         <section className=" flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0 mb-16">
           <div className="flex flex-col  gap-8">
