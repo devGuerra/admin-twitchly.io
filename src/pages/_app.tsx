@@ -7,7 +7,7 @@ import { defaultSEOConfig } from "../../seo-config.config";
 
 const poppins = Poppins({
   weight: "400",
-  subsets: ["latin-ext"],
+  subsets: ["latin"],
   preload: true,
 });
 
