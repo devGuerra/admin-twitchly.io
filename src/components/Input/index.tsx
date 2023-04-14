@@ -9,7 +9,7 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 
 export function Input({ icon: Icon, className, ...rest }: InputProps) {
   return (
-    <div className="px-4  border-2 rounded-md flex flex-1 gap-2 items-center">
+    <div className="px-4 border-2 rounded-md flex flex-1 gap-2 items-center">
       {Icon && <Icon size={24} />}
       <input
         className={`

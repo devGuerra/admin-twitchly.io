@@ -16,6 +16,9 @@ module.exports = {
         red: {
           600: "#E11138"
         }
+      },
+      width: {
+        'max-container': '70rem',
       }
     },
   },

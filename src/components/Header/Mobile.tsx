@@ -15,7 +15,7 @@ export function HeaderMobile() {
           <Image
             src="/images/logo-name.svg"
             alt="logo"
-            width={128}
+            width={108}
             height={32}
           />
         </Link>

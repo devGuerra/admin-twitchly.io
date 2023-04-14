@@ -9,18 +9,18 @@ export const headerLinks = [
     name: "Início",
     href: "/",
   },
-  {
-    name: "Filhotes",
-    href: "/filhotes",
-  },
-  {
-    name: "Criares",
-    href: "/criadores",
-  },
-  {
-    name: "Blog",
-    href: "/blog",
-  },
+  // {
+  //   name: "Filhotes",
+  //   href: "/filhotes",
+  // },
+  // {
+  //   name: "Criares",
+  //   href: "/criadores",
+  // },
+  // {
+  //   name: "Blog",
+  //   href: "/blog",
+  // },
   {
     name: "Sobre",
     href: "/sobre",
