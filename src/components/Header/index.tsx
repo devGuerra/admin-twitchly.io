@@ -6,8 +6,8 @@ import { HeaderMobile } from "./Mobile";
 
 export const headerLinks = [
   {
-    name: "",
-    href: "/",
+    name: "Lista de espera",
+    href: "#espera",
   },
   // {
   //   name: "Filhotes",

@@ -126,14 +126,17 @@ export default function Home() {
           </div>
         </section>
         {/* Waiting list */}
-        <section className=" flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0 mb-16">
+        <section
+          id="espera"
+          className="flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0 mb-16"
+        >
           <div className="flex flex-col  gap-8">
             <h2 className="text-3xl lg:text-4xl font-extrabold text-center mb-2  ">
               Quer sair <span className="text-red-600">na frente ?</span>
             </h2>
             <p className="text:md lg:text-lg text-center  text-gray-600">
-              Cadastra-se na lista de espera e receba um email quando o site
-              estiver pronto.
+              Cadastre-se na lista de espera e seja avisado no lançamento da
+              plataforma.
             </p>
             <div className="flex flex-wrap ">
               <form className="flex flex-col lg:flex-row w-full mt-4">
