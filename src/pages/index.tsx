@@ -1,5 +1,7 @@
+import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Input } from "@/components/Input";
 import { SealCheck, WhatsappLogo } from "@phosphor-icons/react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
@@ -22,18 +24,11 @@ export default function Home() {
                 Tenha um catálogo com todos os seus filhotes, compartilher seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
-              <form className="flex flex-col gap-2 mt-4">
-                <div className="px-4 border-2 rounded-md flex gap-2 items-center">
-                  <input
-                    placeholder="Adicione seu email"
-                    required
-                    type="email"
-                    className="placeholder:text-sm placeholder:text-center text-center w-full placeholder:font-medium text-sm font-semibold border-transparent py-2 focus:border-transparent focus:ring-0 focus:outline-none"
-                  />
-                </div>
-                <button className="bg-red-600 text-white py-2 rounded-md">
-                  Quero entrar na lista de espera
-                </button>
+              <form className="flex flex-col lg:flex-row gap-2 mt-4">
+                <Input placeholder="Adicione seu email" required type="email" />
+                <Button type="submit" className="w-1">
+                  Enviar
+                </Button>
               </form>
             </div>
             <div className="flex flex-col">
@@ -141,18 +136,11 @@ export default function Home() {
               estiver pronto.
             </p>
             <div className="flex flex-wrap ">
-              <form className="flex flex-col w-full gap-2 mt-4">
-                <div className="px-4 border-2 rounded-md flex gap-2 items-center">
-                  <input
-                    placeholder="Adicione seu email"
-                    required
-                    type="email"
-                    className="placeholder:text-sm placeholder:text-center text-center w-full placeholder:font-medium text-sm font-semibold border-transparent py-2 focus:border-transparent focus:ring-0 focus:outline-none"
-                  />
-                </div>
-                <button className="bg-red-600 text-white py-2 rounded-md">
-                  Quero entrar na lista de espera
-                </button>
+              <form className="flex flex-col lg:flex-row w-full gap-2 mt-4">
+                <Input placeholder="Adicione seu email" required type="email" />
+                <Button type="submit" className="lg:w-40">
+                  Cadastrar
+                </Button>
               </form>
             </div>
           </div>
