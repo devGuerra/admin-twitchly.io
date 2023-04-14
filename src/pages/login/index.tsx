@@ -44,7 +44,7 @@ export default function Home() {
           >
             Esqueci minha senha
           </Link>
-          <Button>Entrar</Button>
+          <Button type="button">Entrar</Button>
           <Link href="#" className="text-xs font-semibold text-center">
             Não tem uma conta? <span className="text-red-600">Crie a sua</span>
           </Link>

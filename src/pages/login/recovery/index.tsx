@@ -32,7 +32,7 @@ export default function Home() {
             className="w-full"
           />
 
-          <Button>Recuperar Senha</Button>
+          <Button type="button">Recuperar Senha</Button>
           <Link href="/login" className="text-xs font-semibold text-center">
             voltar
           </Link>
