@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Input } from "@/components/Input";
 import { Transition } from "@headlessui/react";
 import { At, Lock } from "@phosphor-icons/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState, useTransition } from "react";
@@ -20,37 +21,49 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <main className="flex items-center justify-center py-20">
-        <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4 w-full lg:w-3/12">
-          <p className="text:lg">Digite o seu e-mail e senha</p>
-          <Input
-            icon={At}
-            type="email"
-            id="email"
-            placeholder="Informe seu e-email"
-            className="w-full"
+      <main className="flex items-center align-middle justify-center min-h-screen bg-gray-100">
+        <div className="flex w-full flex-col gap-4 items-center lg:w-3/12">
+          <Image
+            src="/images/logo-name.svg"
+            alt="logo"
+            width="128"
+            height={32}
           />
-          <Input
-            icon={Lock}
-            type="password"
-            id="password"
-            placeholder="Digite a senha"
-            className="w-full"
-          />
-          <Link
-            href="/login/recovery"
-            className="text-xs text-red-600 font-semibold"
-          >
-            Esqueci minha senha
-          </Link>
-          <Button type="button">Entrar</Button>
-          <Link href="#" className="text-xs font-semibold text-center">
-            Não tem uma conta? <span className="text-red-600">Crie a sua</span>
-          </Link>
+          <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4  w-full shadow-lg">
+            <p className="text-2xl font-bold">Entrar</p>
+            <p className="text-sm text-gray-600">Digite o seu e-mail e senha</p>
+            <form action="" className="gap-4 flex flex-col">
+              <Input
+                icon={At}
+                type="email"
+                id="email"
+                placeholder="Informe seu e-email"
+                className="w-full"
+                required
+              />
+              <Input
+                icon={Lock}
+                type="password"
+                id="password"
+                placeholder="Digite a senha"
+                className="w-full"
+                required
+              />
+              <Link
+                href="/login/recovery"
+                className="text-sm text-red-600 font-semibold"
+              >
+                Esqueci minha senha
+              </Link>
+              <Button type="submit">Entrar</Button>
+            </form>
+            <Link href="#" className="text-sm text-center text-gray-600">
+              Não tem uma conta?{" "}
+              <span className="text-red-600 font-semibold">Crie a sua</span>
+            </Link>
+          </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

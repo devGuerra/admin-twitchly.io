@@ -7,26 +7,35 @@ import { headerLinks } from ".";
 
 export function HeaderDesktop() {
   return (
-    <nav className="items-center justify-between px-8  bg-white drop-shadow-sm  hidden lg:flex ">
-      <Link href="/" className="flex items-center gap-2 w-32">
-        <Image src="/images/logo-name.svg" alt="logo" width="128" height={32} />
-      </Link>
-      <div className="flex items-center gap-8">
-        {headerLinks.map((link) => (
-          <Link
-            href={link.href}
-            key={link.name}
-            className="text-xs font-semibold py-8"
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div>
-      <Link href="/login" className="flex items-center gap-2 w-32 justify-end">
-        <UserCircle size={24} />
-        <p className="text-sm font-bold">Entrar</p>
-      </Link>
-      {/* <div className="">
+    <div className="px-8  bg-white drop-shadow-sm ">
+      <nav className="items-center justify-between hidden lg:flex container mx-auto  lg:w-max-container">
+        <Link href="/" className="flex items-center gap-2 w-32 py-4">
+          <Image
+            src="/images/logo-name.svg"
+            alt="logo"
+            width="128"
+            height={32}
+          />
+        </Link>
+        <div className="flex items-center gap-8">
+          {headerLinks.map((link) => (
+            <Link
+              href={link.href}
+              key={link.name}
+              className="text-xs font-semibold py-8"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/login"
+          className="flex items-center gap-2 w-32 justify-end"
+        >
+          <UserCircle size={24} />
+          <p className="text-sm font-bold">Entrar</p>
+        </Link>
+        {/* <div className="">
         <Menu as="div" className="relative">
           <Menu.Button className="flex items-center gap-2">
             <UserCircle size={24} />
@@ -47,6 +56,7 @@ export function HeaderDesktop() {
           </Transition>
         </Menu>
       </div> */}
-    </nav>
+      </nav>
+    </div>
   );
 }

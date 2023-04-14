@@ -9,12 +9,12 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 
 export function Input({ icon: Icon, className, ...rest }: InputProps) {
   return (
-    <div className="px-4 border-2 rounded-md flex flex-1 gap-2 items-center">
+    <div className="px-4 border rounded-md flex flex-1 gap-2 items-center">
       {Icon && <Icon size={24} />}
       <input
         className={`
         placeholder:text-sm placeholder:font-medium 
-        text-sm font-semibold border-transparent py-4
+        text-sm font-semibold border-transparent py-3
         focus:border-transparent focus:ring-0 focus:outline-none 
         ${className}`}
         {...rest}

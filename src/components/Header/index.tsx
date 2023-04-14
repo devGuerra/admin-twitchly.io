@@ -6,7 +6,7 @@ import { HeaderMobile } from "./Mobile";
 
 export const headerLinks = [
   {
-    name: "Início",
+    name: "",
     href: "/",
   },
   // {
@@ -21,10 +21,10 @@ export const headerLinks = [
   //   name: "Blog",
   //   href: "/blog",
   // },
-  {
-    name: "Sobre",
-    href: "/sobre",
-  },
+  // {
+  //   name: "Sobre",
+  //   href: "/sobre",
+  // },
 ];
 
 export function Header() {

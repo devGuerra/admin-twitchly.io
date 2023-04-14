@@ -136,7 +136,7 @@ export default function Home() {
               estiver pronto.
             </p>
             <div className="flex flex-wrap ">
-              <form className="flex flex-col lg:flex-row w-full gap-2 mt-4">
+              <form className="flex flex-col lg:flex-row w-full mt-4">
                 <Input placeholder="Adicione seu email" required type="email" />
                 <Button type="submit" className="lg:w-40">
                   Cadastrar
