@@ -32,8 +32,8 @@ export default function Home() {
             />
           </Link>
           <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4  w-full shadow-lg">
-            <p className="text-2xl font-bold">Recuperar senha</p>
-            <p className="text-sm text-gray-600">Digite o seu e-mail </p>
+            <p className="text-2xl font-bold">Criar Conta</p>
+            <p className="text-sm text-gray-600">Digite o seu e-mail e senha</p>
             <form action="" className="gap-4 flex flex-col">
               <Input
                 icon={At}
@@ -43,11 +43,28 @@ export default function Home() {
                 className="w-full"
                 required
               />
+              <Input
+                icon={Lock}
+                type="password"
+                id="password"
+                placeholder="Digite a senha"
+                className="w-full"
+                required
+              />
+              <Input
+                icon={Lock}
+                type="password"
+                id="password"
+                placeholder="Digite a senha"
+                className="w-full"
+                required
+              />
 
-              <Button type="submit">Entrar</Button>
+              <Button type="submit">Criar conta</Button>
             </form>
             <Link href="/login" className="text-sm text-center text-gray-600">
-              Voltar
+              Já tem uma conta?{" "}
+              <span className="text-red-600 font-semibold">Entrar</span>
             </Link>
           </div>
         </div>

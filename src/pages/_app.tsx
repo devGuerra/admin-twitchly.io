@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { NextSeo } from "next-seo";
+import NextNProgress from "nextjs-progressbar";
 
 import { defaultSEOConfig } from "../../seo-config.config";
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo {...defaultSEOConfig} />
+      <NextNProgress color="#E11138" height={5} />
       <style jsx global>{`
         html {
           font-family: ${poppins.style.fontFamily};

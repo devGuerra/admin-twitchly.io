@@ -23,12 +23,14 @@ export default function Home() {
     <>
       <main className="flex items-center align-middle justify-center min-h-screen bg-gray-100">
         <div className="flex w-full flex-col gap-4 items-center lg:w-3/12">
-          <Image
-            src="/images/logo-name.svg"
-            alt="logo"
-            width="128"
-            height={32}
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo-name.svg"
+              alt="logo"
+              width="128"
+              height={32}
+            />
+          </Link>
           <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4  w-full shadow-lg">
             <p className="text-2xl font-bold">Entrar</p>
             <p className="text-sm text-gray-600">Digite o seu e-mail e senha</p>
@@ -57,7 +59,10 @@ export default function Home() {
               </Link>
               <Button type="submit">Entrar</Button>
             </form>
-            <Link href="#" className="text-sm text-center text-gray-600">
+            <Link
+              href="/register"
+              className="text-sm text-center text-gray-600"
+            >
               Não tem uma conta?{" "}
               <span className="text-red-600 font-semibold">Crie a sua</span>
             </Link>
