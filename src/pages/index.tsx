@@ -2,11 +2,49 @@ import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Input } from "@/components/Input";
+import { api } from "@/services/api";
 import { SealCheck, WhatsappLogo } from "@phosphor-icons/react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { useForm, Controller } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from "react";
+
+const leadSchema = z.object({
+  email: z.string().email()
+});
+
+type LeadForm = z.infer<typeof leadSchema>
 
 export default function Home() {
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { isSubmitting, errors },
+  } = useForm<LeadForm>({
+    resolver: zodResolver(leadSchema),
+  })
+
+
+
+  async function handleLead({ email }: LeadForm) {
+
+    try {
+      const { data } = await api.post('/orgs/lead', {
+        email
+      })
+
+      alert('Email cadastrado com sucesso!')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
   return (
     <>
       <Header />
@@ -24,10 +62,18 @@ export default function Home() {
                 Tenha um catálogo com todos os seus filhotes, compartilher seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
-              <form className="flex flex-col lg:flex-row gap-2 mt-4">
-                <Input placeholder="Adicione seu email" required type="email" />
-                <Button type="submit" className="w-1">
-                  Enviar
+              <form onSubmit={handleSubmit(handleLead)} className="flex flex-col lg:flex-row w-full mt-4 gap-2">
+
+                <input
+                  placeholder="Adicione seu email"
+                  type="email"
+                  {...register('email')}
+                  className="px-4 border rounded-md flex flex-1 gap-2 items-center placeholder:text-sm placeholder:font-medium text-sm font-semibold"
+
+
+                />
+                <Button type="submit" className="lg:w-40">
+                  Cadastrar
                 </Button>
               </form>
             </div>
@@ -125,29 +171,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* Waiting list */}
-        <section
-          id="espera"
-          className="flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0 mb-16"
-        >
-          <div className="flex flex-col  gap-8">
-            <h2 className="text-3xl lg:text-4xl font-extrabold text-center mb-2  ">
-              Quer sair <span className="text-red-600">na frente ?</span>
-            </h2>
-            <p className="text:md lg:text-lg text-center  text-gray-600">
-              Cadastre-se na lista de espera e seja avisado no lançamento da
-              plataforma.
-            </p>
-            <div className="flex flex-wrap ">
-              <form className="flex flex-col lg:flex-row w-full mt-4">
-                <Input placeholder="Adicione seu email" required type="email" />
-                <Button type="submit" className="lg:w-40">
-                  Cadastrar
-                </Button>
-              </form>
-            </div>
-          </div>
-        </section>
+
       </main>
       <Footer />
     </>
