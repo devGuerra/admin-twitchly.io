@@ -1,23 +1,25 @@
 import { Button } from "@/components/Button";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { Input } from "@/components/Input";
-import { Transition } from "@headlessui/react";
+import { api } from "@/services/api";
 import { At, Lock } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { Fragment, useEffect, useState, useTransition } from "react";
 
 export default function Home() {
-  const [isPending, startTransition] = useTransition();
-  const [show, setShow] = useState(false);
+  async function handleLogin() {
+    try {
 
-  useEffect(() => {
-    startTransition(() => {
-      setShow(true);
-    });
-  }, []);
+      const user = await api.post('/auth/sessions', {
+        email: 'test@gmail.com',
+        password: '123456'
+      })
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+  
 
   return (
     <>
@@ -57,7 +59,7 @@ export default function Home() {
               >
                 Esqueci minha senha
               </Link>
-              <Button type="submit">Entrar</Button>
+              <Button type="button" onClick={handleLogin}>Entrar</Button>
             </form>
             <Link
               href="/register"
