@@ -61,7 +61,7 @@ export default function Home() {
                 <span className="text-red-600">filhotes</span>
               </h1>
               <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
-                Tenha um catálogo com todos os seus filhotesE compartilhe seu
+                Tenha um catálogo com todos os seus filhotese compartilhe seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
               <form

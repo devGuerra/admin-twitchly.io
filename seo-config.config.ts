@@ -4,13 +4,13 @@ export const defaultSEOConfig = {
   titleTemplate: "%s | Seu Filhote",
   defaultTitle: "Seu Filhote",
   description:
-    "Encontre seu novo amigo com a ajuda do Seu Filhote. Aqui você encontra os melhores anúncios criadores para encontrar seu gato ou cachorro.",
+    "Crie um site para site para seu Canil com seufilhote.com.br. Economize tempo e dinheiro com nosso catálogo online e compartilhe com seus clientes a história de seus filhotes.",
   canonical: "https://seufilhote.com.br/",
   openGraph: {
     url: "https://seufilhote.com.br/",
     title: "seufilhote.com.br",
     description:
-      "Encontre seu novo amigo com a ajuda do Seu Filhote. Aqui você encontra os melhores anúncios criadores para encontrar seu gato ou cachorro.",
+      "Crie um site para site para seu Canil com seufilhote.com.br. Economize tempo e dinheiro com nosso catálogo online e compartilhe com seus clientes a história de seus filhotes.",
     images: [
       {
         url: "https://og-image.sznm.dev/**nextarter-chakra**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250",
