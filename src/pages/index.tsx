@@ -22,10 +22,10 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
 
   const registerForm = () => {
-    const { register, formState, handleSubmit } = useForm<LeadForm>({
+    const { register, formState, handleSubmit, setValue } = useForm<LeadForm>({
       resolver: zodResolver(leadSchema),
     });
-    return { register, formState, handleSubmit };
+    return { register, formState, handleSubmit, setValue };
   };
 
   const forms = {
@@ -39,8 +39,9 @@ export default function Home() {
         email,
       });
 
-      // alert("Email cadastrado com sucesso!");
       setOpenModal(true);
+      forms.footer.setValue("email", "");
+      forms.hero.setValue("email", "");
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +61,7 @@ export default function Home() {
                 <span className="text-red-600">filhotes</span>
               </h1>
               <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
-                Tenha um catálogo com todos os seus filhotes, compartilher seu
+                Tenha um catálogo com todos os seus filhotesE compartilhe seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
               <form
@@ -77,9 +78,6 @@ export default function Home() {
                 <Button type="submit" className="lg:w-40">
                   Cadastrar
                 </Button>
-                {/* <Button type="submit" className="lg:w-40">
-                  Cadastrar
-                </Button> */}
               </form>
             </div>
             <div className="flex flex-col">
