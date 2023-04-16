@@ -25,6 +25,20 @@ export default function App({ Component, pageProps }: AppProps) {
       <script
         dangerouslySetInnerHTML={{
           __html: `
+          <!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCQEN9LTEH"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-JCQEN9LTEH');
+          </script>`,
+        }}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
          (function(c,l,a,r,i,t,y){
              c[a] = c[a] || function () { (c[a].q = c[a].q || 
              []).push(arguments) };
