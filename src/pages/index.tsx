@@ -8,42 +8,43 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { Alert } from "@/components/Alert";
 
 const leadSchema = z.object({
-  email: z.string().email()
+  email: z.string().email(),
 });
 
-type LeadForm = z.infer<typeof leadSchema>
+type LeadForm = z.infer<typeof leadSchema>;
 
 export default function Home() {
+  const [openModal, setOpenModal] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { isSubmitting, errors },
-  } = useForm<LeadForm>({
-    resolver: zodResolver(leadSchema),
-  })
+  const registerForm = () => {
+    const { register, formState, handleSubmit } = useForm<LeadForm>({
+      resolver: zodResolver(leadSchema),
+    });
+    return { register, formState, handleSubmit };
+  };
 
-
+  const forms = {
+    hero: registerForm(),
+    footer: registerForm(),
+  };
 
   async function handleLead({ email }: LeadForm) {
-
     try {
-      const { data } = await api.post('/orgs/lead', {
-        email
-      })
+      const { data } = await api.post("/orgs/lead", {
+        email,
+      });
 
-      alert('Email cadastrado com sucesso!')
+      // alert("Email cadastrado com sucesso!");
+      setOpenModal(true);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
-
-
 
   return (
     <>
@@ -62,19 +63,23 @@ export default function Home() {
                 Tenha um catálogo com todos os seus filhotes, compartilher seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
-              <form onSubmit={handleSubmit(handleLead)} className="flex flex-col lg:flex-row w-full mt-4 gap-2">
-
+              <form
+                onSubmit={forms.hero.handleSubmit(handleLead)}
+                className="flex flex-col lg:flex-row w-full mt-4 gap-2"
+              >
                 <input
-                  placeholder="Adicione seu email"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email"
                   type="email"
-                  {...register('email')}
-                  className="px-4 border rounded-md flex flex-1 gap-2 items-center placeholder:text-sm placeholder:font-medium text-sm font-semibold"
-
-
+                  placeholder="Adicione seu email"
+                  {...forms.hero.register("email")}
                 />
                 <Button type="submit" className="lg:w-40">
                   Cadastrar
                 </Button>
+                {/* <Button type="submit" className="lg:w-40">
+                  Cadastrar
+                </Button> */}
               </form>
             </div>
             <div className="flex flex-col">
@@ -171,8 +176,43 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="mt-16 mb-48 flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0">
+          <div className="flex flex-col-reverse lg:flex-row justify-center gap-8 lg:w-1/2">
+            <div className="flex flex-col flex-1 justify-center ">
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-center lg:text-left mb-2  ">
+                Entre na lista de espera e receba{" "}
+                <span className="text-red-600">atualizações</span>
+              </h2>
+              <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
+                Nossa plataforma ficará disponível em breve, cadastre seu email
+                para receber atualizações.
+              </p>
+              <form
+                onSubmit={forms.footer.handleSubmit(handleLead)}
+                className="flex flex-col lg:flex-row w-full mt-4 gap-2"
+              >
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email2"
+                  type="email"
+                  placeholder="Adicione seu email"
+                  {...forms.footer.register("email")}
+                />
 
+                <Button type="submit" className="lg:w-40">
+                  Cadastrar
+                </Button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
+      <Alert
+        open={openModal}
+        title="Email cadastrado"
+        description="Seu email foi cadastrado com sucesso, em breve você receberá atualizações sobre nossa plataforma."
+        onClose={() => setOpenModal(false)}
+      />
       <Footer />
     </>
   );
