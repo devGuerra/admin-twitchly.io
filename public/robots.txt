@@ -1,0 +1,8 @@
+User-agent: *
+Sitemap: https://www.seufilhote.com.br/sitemap.xml
+Allow: /
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /_nextjs/
+Disallow: /api/
