@@ -13,8 +13,8 @@ export const defaultSEOConfig = {
       "Crie um site para site para seu Canil com seufilhote.com.br. Economize tempo e dinheiro com nosso catálogo online e compartilhe com seus clientes a história de seus filhotes.",
     images: [
       {
-        url: "https://og-image.sznm.dev/**nextarter-chakra**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250",
-        alt: "seufilhote.com.brog-image",
+        url: "https://seufilhote.com.br/api/opengraph",
+        alt: "Seu filhote - Crie um site para seu Canil",
       },
     ],
     site_name: "seufilhote.com.br",
