@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <NextSeo title="Seu filhote - A melhor Rede de Criadores do Brasil" />
+      <NextSeo title="Crie um catalago de filhotes com site para seu Canil" />
       <main className="bg-white">
         {/* Hero */}
         <section className="mt-16 mb-48 flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0">
@@ -61,7 +61,7 @@ export default function Home() {
                 <span className="text-red-600">filhotes</span>
               </h1>
               <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
-                Tenha um catálogo com todos os seus filhotese compartilhe seu
+                Tenha um catálogo com todos os seus filhotes e compartilhe seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
               <form

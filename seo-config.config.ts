@@ -23,4 +23,27 @@ export const defaultSEOConfig = {
     handle: "@dev_guerra",
     cardType: "summary_large_image",
   },
+  additionalLinkTags: [
+    {
+      rel: "icon",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "shortcut icon",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "apple-touch-icon-precomposed",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/favicon/touch-icon-ipad.jpg",
+      sizes: "76x76",
+    },
+    {
+      rel: "manifest",
+      href: "/manifest.json",
+    },
+  ],
 };
