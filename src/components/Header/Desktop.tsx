@@ -28,13 +28,13 @@ export function HeaderDesktop() {
             </Link>
           ))}
         </div>
-        {/* <Link
+        <Link
           href="/login"
           className="flex items-center gap-2 w-32 justify-end"
         >
           <UserCircle size={24} />
-          <p className="text-sm font-bold">Entrar</p>
-        </Link> */}
+          <p className="text-sm font-bold">Login</p>
+        </Link>
         {/* <div className="">
         <Menu as="div" className="relative">
           <Menu.Button className="flex items-center gap-2">

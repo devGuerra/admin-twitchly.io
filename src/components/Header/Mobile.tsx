@@ -50,6 +50,9 @@ export function HeaderMobile() {
                     {link.name}
                   </Link>
                 ))}
+                <Link href="/login" className="text-md font-semibold ">
+                  Login
+                </Link>
               </li>
             </ul>
           </div>

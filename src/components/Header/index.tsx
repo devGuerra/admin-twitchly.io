@@ -6,25 +6,25 @@ import { HeaderMobile } from "./Mobile";
 
 export const headerLinks = [
   {
-    name: "Lista de espera",
-    href: "#espera",
+    name: "Inicio",
+    href: "/",
   },
-  // {
-  //   name: "Filhotes",
-  //   href: "/filhotes",
-  // },
-  // {
-  //   name: "Criares",
-  //   href: "/criadores",
-  // },
+  {
+    name: "Filhotes",
+    href: "/filhotes",
+  },
+  {
+    name: "Criadores",
+    href: "/criadores",
+  },
   // {
   //   name: "Blog",
   //   href: "/blog",
   // },
-  // {
-  //   name: "Sobre",
-  //   href: "/sobre",
-  // },
+  {
+    name: "Sobre",
+    href: "/sobre",
+  },
 ];
 
 export function Header() {
