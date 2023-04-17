@@ -64,21 +64,10 @@ export default function Home() {
                 Tenha um catálogo com todos os seus filhotes e compartilhe seu
                 site com seus clientes. A melhor rede de criadores do Brasil.
               </p>
-              <form
-                onSubmit={forms.hero.handleSubmit(handleLead)}
-                className="flex flex-col lg:flex-row w-full mt-4 gap-2"
-              >
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  placeholder="Adicione seu email"
-                  {...forms.hero.register("email")}
-                />
-                <Button type="submit" className="lg:w-40">
-                  Cadastrar
-                </Button>
-              </form>
+
+              <Button type="button" className="lg:w-40 mt-2">
+                Criar site
+              </Button>
             </div>
             <div className="flex flex-col">
               <Image
@@ -178,29 +167,17 @@ export default function Home() {
           <div className="flex flex-col-reverse lg:flex-row justify-center gap-8 lg:w-1/2">
             <div className="flex flex-col flex-1 justify-center ">
               <h2 className="text-3xl lg:text-4xl font-extrabold text-center lg:text-left mb-2  ">
-                Entre na lista de espera e receba{" "}
-                <span className="text-red-600">atualizações</span>
+                Comece agora mesmo e crie seu site em{" "}
+                <span className="text-red-600">minutos</span>
               </h2>
               <p className="text:md lg:text-lg text-center lg:text-left text-gray-600">
-                Nossa plataforma ficará disponível em breve, cadastre seu email
-                para receber atualizações.
+                Você pode ter um site para seus filhotes, tenha um catálogo com
+                todos os seus filhotes e compartilhe seu site com seus clientes.
               </p>
-              <form
-                onSubmit={forms.footer.handleSubmit(handleLead)}
-                className="flex flex-col lg:flex-row w-full mt-4 gap-2"
-              >
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email2"
-                  type="email"
-                  placeholder="Adicione seu email"
-                  {...forms.footer.register("email")}
-                />
 
-                <Button type="submit" className="lg:w-40">
-                  Cadastrar
-                </Button>
-              </form>
+              <Button type="button" className=" mt-2">
+                Criar site
+              </Button>
             </div>
           </div>
         </section>
