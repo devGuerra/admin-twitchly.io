@@ -41,6 +41,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const user = localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
+      return;
     }
     if (protectedRoutes.includes(pathname)) {
       push("/");
