@@ -1,11 +1,51 @@
 import Image from "next/image";
 import { UserCircle } from "@phosphor-icons/react";
 import Link from "next/link";
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
 import { headerLinks } from ".";
+import { useUser } from "@/hooks/user";
+import { useRouter } from "next/router";
 
 export function HeaderDesktop() {
+  const { user } = useUser();
+
+  const { pathname } = useRouter();
+
+  function renderAction() {
+    if (!user?.id) {
+      return (
+        <Link
+          href="/login"
+          className="flex items-center gap-2 w-32 justify-end"
+        >
+          <UserCircle size={24} />
+          <p className="text-sm font-bold">Login</p>
+        </Link>
+      );
+    }
+
+    if (pathname === "/dashboard") {
+      return (
+        <Link
+          href="/canil"
+          className="flex items-center gap-2 w-32 justify-end"
+        >
+          <UserCircle size={24} />
+          <p className="text-sm font-bold">Meu site</p>
+        </Link>
+      );
+    }
+
+    return (
+      <Link
+        href="/dashboard"
+        className="flex items-center gap-2 w-32 justify-end"
+      >
+        <UserCircle size={24} />
+        <p className="text-sm font-bold">Dashboard</p>
+      </Link>
+    );
+  }
+
   return (
     <div className="px-8  bg-white drop-shadow-sm ">
       <nav className="items-center justify-between hidden lg:flex container mx-auto  lg:w-max-container">
@@ -28,13 +68,8 @@ export function HeaderDesktop() {
             </Link>
           ))}
         </div>
-        <Link
-          href="/login"
-          className="flex items-center gap-2 w-32 justify-end"
-        >
-          <UserCircle size={24} />
-          <p className="text-sm font-bold">Login</p>
-        </Link>
+        {renderAction()}
+
         {/* <div className="">
         <Menu as="div" className="relative">
           <Menu.Button className="flex items-center gap-2">

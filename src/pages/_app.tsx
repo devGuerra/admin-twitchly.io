@@ -5,6 +5,7 @@ import { NextSeo } from "next-seo";
 import NextNProgress from "nextjs-progressbar";
 
 import { defaultSEOConfig } from "../../seo-config.config";
+import { UserProvider } from "@/context/user";
 
 const poppins = Poppins({
   weight: "400",
@@ -52,8 +53,9 @@ export default function App({ Component, pageProps }: AppProps) {
          })(window, document, "clarity", "script", "go4fu8cskt");`,
         }}
       />
-
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </>
   );
 }

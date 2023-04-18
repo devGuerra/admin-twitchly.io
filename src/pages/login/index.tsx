@@ -1,25 +1,30 @@
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { useUser } from "@/hooks/user";
 import { api } from "@/services/api";
 import { At, Lock } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const { user, login } = useUser();
+  const { push } = useRouter();
+
+  // if (user?.id) {
+  //   return push("/dashboard");
+  // }
+
   async function handleLogin() {
     try {
-
-      const user = await api.post('/auth/sessions', {
-        email: 'test@gmail.com',
-        password: '123456'
-      })
-      
+      login({
+        email: "roberto1@gmail.com",
+        password: "password",
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   }
-  
 
   return (
     <>
@@ -59,7 +64,9 @@ export default function Home() {
               >
                 Esqueci minha senha
               </Link>
-              <Button type="button" onClick={handleLogin}>Entrar</Button>
+              <Button type="button" onClick={handleLogin}>
+                Entrar
+              </Button>
             </form>
             <Link
               href="/register"
