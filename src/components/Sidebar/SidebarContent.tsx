@@ -48,7 +48,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
                 )}
                 <div className="flex flex-row gap-4 items-center">
                   {renderIcon(route.icon)}
-                  <span className="text-md font-bold">{route.name}</span>
+                  <span className="text-md font-semibold">{route.name}</span>
                 </div>
               </Link>
             </li>
@@ -62,7 +62,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
           >
             <div className="flex flex-row gap-4 items-center">
               <SignOut size={24} />
-              <span className="text-md font-bold">Sair</span>
+              <span className="text-md font-semibold">Sair</span>
             </div>
           </a>
         </li>

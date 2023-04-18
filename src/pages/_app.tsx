@@ -6,11 +6,11 @@ import NextNProgress from "nextjs-progressbar";
 
 import { defaultSEOConfig } from "../../seo-config.config";
 import { UserProvider } from "@/context/user";
+import { ModalProvider } from "@/context/ModalContext";
 
 const poppins = Poppins({
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
-  preload: true,
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,11 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <NextSeo {...defaultSEOConfig} />
       <NextNProgress color="#E11138" height={5} />
-      <style jsx global>{`
-        html {
-          font-family: ${poppins.style.fontFamily};
-        }
-      `}</style>
+
       <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-JCQEN9LTEH"
@@ -53,9 +49,13 @@ export default function App({ Component, pageProps }: AppProps) {
          })(window, document, "clarity", "script", "go4fu8cskt");`,
         }}
       />
-      <UserProvider>
-        <Component {...pageProps} />
-      </UserProvider>
+      <div className={poppins.className}>
+        <UserProvider>
+          <ModalProvider>
+            <Component {...pageProps} />
+          </ModalProvider>
+        </UserProvider>
+      </div>
     </>
   );
 }

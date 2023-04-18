@@ -17,12 +17,12 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`px-3 py-3 border-0 rounded-md flex w-auto gap-2 items-center justify-center bg-red-600 hover:bg-red-700 transition-colors ${className}`}
+      className={`px-3 py-3 border-0 rounded-md flex w-auto gap-2 items-center justify-center bg-red-600 hover:bg-red-700 transition-colors text-white text-xs  ${className}`}
       {...rest}
       type={type}
     >
       {Icon && <Icon size={24} />}
-      <p className="text-sm text-white font-semibold">{children}</p>
+      {children}
     </button>
   );
 }
