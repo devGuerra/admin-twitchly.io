@@ -23,7 +23,7 @@ export function HeaderDesktop() {
       );
     }
 
-    if (pathname === "/dashboard") {
+    if (pathname.includes("/dashboard")) {
       return (
         <Link
           href={`/${user.slug}`}

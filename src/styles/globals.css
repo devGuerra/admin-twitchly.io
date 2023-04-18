@@ -18,9 +18,3 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-body {
-  color: rgb(var(--color));
-  /* background: var(--background-light); */
-  min-height: 100vh;
-}

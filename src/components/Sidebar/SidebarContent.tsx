@@ -46,7 +46,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
                     aria-hidden="true"
                   ></span>
                 )}
-                <div className="flex flex-row gap-2 items-center">
+                <div className="flex flex-row gap-4 items-center">
                   {renderIcon(route.icon)}
                   <span className="text-md font-bold">{route.name}</span>
                 </div>
@@ -60,7 +60,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
             className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800`}
             onClick={logout}
           >
-            <div className="flex flex-row gap-2 items-center">
+            <div className="flex flex-row gap-4 items-center">
               <SignOut size={24} />
               <span className="text-md font-bold">Sair</span>
             </div>

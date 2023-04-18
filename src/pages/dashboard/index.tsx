@@ -7,55 +7,6 @@ export default function Dashboard() {
   return (
     <Layout>
       <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
-      <h1 className="text-2xl font-bold">Painel</h1>
     </Layout>
   );
 }

@@ -15,9 +15,9 @@ function Layout({ children }: ILayout) {
   return (
     <SidebarProvider>
       <Header />
-      <div className={`flex ${isSidebarOpen && "overflow-hidden"}`}>
+      <div className={`flex overflow-hidden `}>
         <Sidebar />
-        <div className="flex flex-col flex-1 w-full">
+        <div className="flex flex-col flex-1 w-full ">
           <Main>{children}</Main>
         </div>
       </div>

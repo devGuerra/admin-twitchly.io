@@ -31,17 +31,13 @@ const routes: IRoute[] = [
   {
     path: '/dashboard', // the url
     icon: House,
-    name: 'Dashboard', // name that appear in Sidebar
+    name: 'Início', // name that appear in Sidebar
     exact: true,
   },
-  {
-    path: '/dashboard/pets/register',
-    icon: PawPrint,
-    name: 'Adicionar Filhote',
-  },
+
   {
     path: '/dashboard/pets',
-    icon: ListBullets,
+    icon: PawPrint,
     name: 'Meus Filhotes',
   },
   {
