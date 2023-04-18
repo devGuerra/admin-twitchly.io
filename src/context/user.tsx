@@ -1,6 +1,8 @@
 import { protectedRoutes } from "@/config/protectedRoutes";
-import { api } from "@/services/api";
+import { storageTokens } from "@/config/storageTokens";
+import api from "@/services/api";
 import { useRouter } from "next/router";
+import { destroyCookie, setCookie, parseCookies } from "nookies";
 import { createContext, useEffect, useState } from "react";
 
 type UserLoginProps = {
@@ -15,6 +17,7 @@ type User = {
   avatar: string;
   slug: string;
   subcription_active: boolean;
+  description: string;
 };
 
 type UserContextType = {
@@ -38,36 +41,54 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const { push, pathname } = useRouter();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
+    const cookies = parseCookies();
+    const token = cookies[storageTokens.token];
+
+    if (token && protectedRoutes.includes(pathname) && !user?.id) {
+      api.get("/users/me").then((response) => {
+        setUser(response.data);
+      });
+
       return;
-    }
-    if (protectedRoutes.includes(pathname)) {
-      push("/");
     }
   }, []);
 
   async function login({ email, password }: UserLoginProps) {
     try {
-      const { data } = await api.post("/auth/sessions", {
+      const response = await api.post("/auth/sessions", {
         email,
         password,
       });
 
-      setUser(data.user);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(response.data.user);
+
+      setCookie(undefined, storageTokens.token, response.data.token, {
+        maxAge: 60 * 60 * 24, // 1 day
+        path: "/",
+        sameSite: true,
+      });
+
+      setCookie(
+        undefined,
+        storageTokens.refreshToken,
+        response.data.refreshToken,
+        {
+          maxAge: 60 * 60 * 24 * 7, // 30 days
+          path: "/",
+          sameSite: true,
+        }
+      );
 
       push("/dashboard");
     } catch (error) {
-      console.log(error);
+      throw new Error("Email ou senha inválidos");
     }
   }
 
-  async function logout() {
+  async function logout(redirect: string = "/") {
     setUser(null);
-    localStorage.removeItem("user");
-    push("/");
+    destroyCookie(undefined, storageTokens.token);
+    push(redirect);
   }
 
   return (
