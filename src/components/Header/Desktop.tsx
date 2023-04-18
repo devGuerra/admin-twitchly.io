@@ -4,6 +4,7 @@ import Link from "next/link";
 import { headerLinks } from ".";
 import { useUser } from "@/hooks/user";
 import { useRouter } from "next/router";
+import { protectedRoutes } from "@/config/protectedRoutes";
 
 export function HeaderDesktop() {
   const { user } = useUser();
@@ -23,7 +24,7 @@ export function HeaderDesktop() {
       );
     }
 
-    if (pathname.includes("/dashboard")) {
+    if (protectedRoutes.includes(pathname)) {
       return (
         <Link
           href={`/${user.slug}`}
@@ -48,7 +49,11 @@ export function HeaderDesktop() {
 
   return (
     <div className="px-8  bg-white drop-shadow-sm ">
-      <nav className="items-center justify-between hidden lg:flex container mx-auto  lg:w-max-container">
+      <nav
+        className={`items-center justify-between hidden lg:flex  mx-auto ${
+          pathname.includes("dashboard") ? "" : "lg:w-max-container"
+        }`}
+      >
         <Link href="/" className="flex items-center gap-2 w-32 py-4">
           <Image
             src="/images/logo-name.svg"

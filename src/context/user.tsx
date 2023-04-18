@@ -1,3 +1,4 @@
+import { protectedRoutes } from "@/config/protectedRoutes";
 import { api } from "@/services/api";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
@@ -34,12 +35,15 @@ export const UserContext = createContext<UserContextType>({
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState({} as User | null);
-  const { push } = useRouter();
+  const { push, pathname } = useRouter();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
+    }
+    if (protectedRoutes.includes(pathname)) {
+      push("/");
     }
   }, []);
 
