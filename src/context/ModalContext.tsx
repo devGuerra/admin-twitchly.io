@@ -1,7 +1,4 @@
 import { Alert } from "@/components/Alert";
-import { protectedRoutes } from "@/config/protectedRoutes";
-import { api } from "@/services/api";
-import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 
 type ModalProps = {

@@ -101,7 +101,7 @@ export default function Home() {
               <Button type="submit">Entrar</Button>
             </form>
             <Link
-              href="/register"
+              href="/login/register"
               className="text-sm text-center text-gray-600"
             >
               Não tem uma conta?{" "}

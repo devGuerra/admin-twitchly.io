@@ -1,4 +1,3 @@
-import { protectedRoutes } from "@/config/protectedRoutes";
 import { storageTokens } from "@/config/storageTokens";
 import api from "@/services/api";
 import { useRouter } from "next/router";
@@ -44,14 +43,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const cookies = parseCookies();
     const token = cookies[storageTokens.token];
 
-    if (token && protectedRoutes.includes(pathname) && !user?.id) {
+    if (token && !user?.id) {
       api.get("/users/me").then((response) => {
         setUser(response.data);
       });
 
       return;
     }
-  }, []);
+  }, [pathname]);
 
   async function login({ email, password }: UserLoginProps) {
     try {

@@ -1,53 +1,14 @@
-import { useState } from "react";
 import { SealCheck } from "@phosphor-icons/react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { api } from "@/services/api";
 import { Alert } from "@/components/Alert";
-import { GetServerSideProps } from "next";
-
-const leadSchema = z.object({
-  email: z.string().email(),
-});
-
-type LeadForm = z.infer<typeof leadSchema>;
+import Link from "next/link";
 
 export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
-
-  const registerForm = () => {
-    const { register, formState, handleSubmit, setValue } = useForm<LeadForm>({
-      resolver: zodResolver(leadSchema),
-    });
-    return { register, formState, handleSubmit, setValue };
-  };
-
-  const forms = {
-    hero: registerForm(),
-    footer: registerForm(),
-  };
-
-  async function handleLead({ email }: LeadForm) {
-    try {
-      const { data } = await api.post("/orgs/lead", {
-        email,
-      });
-
-      setOpenModal(true);
-      forms.footer.setValue("email", "");
-      forms.hero.setValue("email", "");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   return (
     <>
       <Header />
@@ -176,20 +137,16 @@ export default function Home() {
                 todos os seus filhotes e compartilhe seu site com seus clientes.
               </p>
 
-              <Button type="button" className=" mt-2">
-                Criar site
-              </Button>
+              <Link href="/dashboard">
+                <Button type="button" className=" mt-2">
+                  Criar site
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
       </main>
-      <Alert
-        open={openModal}
-        title="Email cadastrado"
-        description="Seu email foi cadastrado com sucesso, em breve você receberá atualizações sobre nossa plataforma."
-        onClose={() => setOpenModal(false)}
-        onConfirm={() => setOpenModal(false)}
-      />
+
       <Footer />
     </>
   );

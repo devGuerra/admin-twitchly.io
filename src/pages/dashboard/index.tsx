@@ -1,11 +1,9 @@
 import { PetCard } from "@/components/PetCard";
+import { storageTokens } from "@/config/storageTokens";
 import Layout from "@/containers/Layout";
-import { useModal } from "@/hooks/modal";
 import { useUser } from "@/hooks/user";
-import api from "@/services/api";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
+import nookies from "nookies";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -59,3 +57,22 @@ export default function Dashboard() {
     </Layout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx);
+
+  const token = cookies[storageTokens.token];
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
