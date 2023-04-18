@@ -18,6 +18,12 @@ module.exports = {
           600: '#E11138'
         }
       },
+      maxWidth: {
+        xxs: '13rem'
+      },
+      minWidth: {
+        xxxs: '10rem'
+      },
       width: {
         'max-container': '70rem'
       }
