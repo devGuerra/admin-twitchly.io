@@ -46,7 +46,7 @@ export default function Home() {
       });
     }
 
-    push("/dashboard");
+    window.location.reload();
   }
 
   return (
