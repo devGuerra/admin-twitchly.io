@@ -10,8 +10,6 @@ interface ILayout {
 }
 
 function Layout({ children }: ILayout) {
-  const { isSidebarOpen } = useContext(SidebarContext);
-
   return (
     <SidebarProvider>
       <Header />

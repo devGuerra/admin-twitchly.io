@@ -62,17 +62,20 @@ export function HeaderDesktop() {
             height={32}
           />
         </Link>
-        <div className="flex items-center gap-8">
-          {headerLinks.map((link) => (
-            <Link
-              href={link.href}
-              key={link.name}
-              className="text-xs font-semibold py-8"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
+        {!protectedRoutes.includes(pathname) && (
+          <div className="flex items-center gap-8">
+            {headerLinks.map((link) => (
+              <Link
+                href={link.href}
+                key={link.name}
+                className="text-xs font-semibold py-8"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        )}
+
         {renderAction()}
 
         {/* <div className="">

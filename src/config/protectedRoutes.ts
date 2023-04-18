@@ -5,4 +5,5 @@ export const protectedRoutes = [
   '/dashboard/account',
   '/dashboard/subscription',
   '/dashboard/help',
+  '/dashboard/site'
 ]

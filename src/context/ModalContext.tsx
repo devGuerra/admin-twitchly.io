@@ -30,6 +30,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [modalInfo, setModalInfo] = useState<ModalProps>({} as ModalProps);
 
   function openModal(data: ModalProps) {
+    console.log(data);
     setModalInfo(data);
     setOpen(true);
   }
