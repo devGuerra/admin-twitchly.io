@@ -4,7 +4,7 @@
  *
  */
 
-import { ChartLine, CreditCard, House, ListBullets, PawPrint, Question, SignOut, UserCircle } from "@phosphor-icons/react"
+import { Browsers, ChartLine, CreditCard, House, ListBullets, PawPrint, Question, SignOut, UserCircle } from "@phosphor-icons/react"
 
 interface IRoute {
   path?: string
@@ -34,11 +34,15 @@ const routes: IRoute[] = [
     name: 'Início', // name that appear in Sidebar
     exact: true,
   },
-
   {
     path: '/dashboard/pets',
     icon: PawPrint,
     name: 'Meus Filhotes',
+  },
+  {
+    path: '/dashboard/site',
+    icon: Browsers,
+    name: 'Meu Site',
   },
   {
     path: '/dashboard/stats',

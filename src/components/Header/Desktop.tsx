@@ -31,7 +31,7 @@ export function HeaderDesktop() {
           className="flex items-center gap-2 w-32 justify-end"
         >
           <UserCircle size={24} />
-          <p className="text-sm font-bold">Meu site</p>
+          <p className="text-xs font-semibold py-8">Meu site</p>
         </Link>
       );
     }
@@ -42,7 +42,7 @@ export function HeaderDesktop() {
         className="flex items-center gap-2 w-32 justify-end"
       >
         <UserCircle size={24} />
-        <p className="text-sm font-bold">Dashboard</p>
+        <p className="text-xs font-semibold py-8">Dashboard</p>
       </Link>
     );
   }
