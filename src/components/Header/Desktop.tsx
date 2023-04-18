@@ -26,7 +26,7 @@ export function HeaderDesktop() {
     if (pathname === "/dashboard") {
       return (
         <Link
-          href="/canil"
+          href={`/${user.slug}`}
           className="flex items-center gap-2 w-32 justify-end"
         >
           <UserCircle size={24} />

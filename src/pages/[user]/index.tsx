@@ -1,57 +1,30 @@
-import { useState } from "react";
 import { SealCheck } from "@phosphor-icons/react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { GetServerSideProps } from "next";
 
 import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { api } from "@/services/api";
-import { Alert } from "@/components/Alert";
-import { GetServerSideProps } from "next";
 
-const leadSchema = z.object({
-  email: z.string().email(),
-});
-
-type LeadForm = z.infer<typeof leadSchema>;
-
-export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
-
-  const registerForm = () => {
-    const { register, formState, handleSubmit, setValue } = useForm<LeadForm>({
-      resolver: zodResolver(leadSchema),
-    });
-    return { register, formState, handleSubmit, setValue };
+type User = {
+  user: {
+    name: string | null;
+    slug: string | null;
+    avatar: string | null;
+    description: string | null;
+    socialMedias: [];
+    pets: [];
   };
+};
 
-  const forms = {
-    hero: registerForm(),
-    footer: registerForm(),
-  };
-
-  async function handleLead({ email }: LeadForm) {
-    try {
-      const { data } = await api.post("/orgs/lead", {
-        email,
-      });
-
-      setOpenModal(true);
-      forms.footer.setValue("email", "");
-      forms.hero.setValue("email", "");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
+export default function User({ user }: User) {
+  console.log(user);
   return (
     <>
       <Header />
-      <NextSeo title="Crie um catalago de filhotes com site para seu Canil" />
+      <NextSeo title={`${user.slug}`} />
       <main className="bg-white">
         {/* Hero */}
         <section className="mt-16 mb-48 flex justify-center items-center container lg:w-max-container mx-auto px-4 lg:px-0">
@@ -183,13 +156,31 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Alert
-        open={openModal}
-        title="Email cadastrado"
-        description="Seu email foi cadastrado com sucesso, em breve você receberá atualizações sobre nossa plataforma."
-        onClose={() => setOpenModal(false)}
-      />
       <Footer />
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  query,
+  req,
+  res,
+  ...rest
+}) => {
+  try {
+    const user = params?.user;
+
+    const { data: profile } = await api.get(`/users/${user}`);
+
+    return {
+      props: {
+        user: profile,
+      }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+};

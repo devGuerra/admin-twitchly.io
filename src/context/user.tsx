@@ -7,8 +7,17 @@ type UserLoginProps = {
   password: string;
 };
 
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  slug: string;
+  subcription_active: boolean;
+};
+
 type UserContextType = {
-  user: any;
+  user: User | null;
   login: ({}: UserLoginProps) => void;
   logout: () => void;
 };
@@ -24,7 +33,7 @@ export const UserContext = createContext<UserContextType>({
 });
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({} as User | null);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -51,7 +60,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   }
 
   async function logout() {
-    setUser({});
+    setUser(null);
     localStorage.removeItem("user");
     push("/");
   }
