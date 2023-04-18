@@ -50,11 +50,11 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       <div className={poppins.className}>
-        <UserProvider>
-          <ModalProvider>
+        <ModalProvider>
+          <UserProvider>
             <Component {...pageProps} />
-          </ModalProvider>
-        </UserProvider>
+          </UserProvider>
+        </ModalProvider>
       </div>
     </>
   );

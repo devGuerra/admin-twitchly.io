@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { useUser } from "@/hooks/user";
+import { useModal } from "@/hooks/modal";
+import { useRouter } from "next/router";
 
 const loginSchema = z.object({
   email: z.string().email("Informe um e-mail válido"),
@@ -18,6 +20,8 @@ type LoginForm = z.infer<typeof loginSchema>;
 
 export default function Home() {
   const { login } = useUser();
+  const { openModal } = useModal();
+  const { push } = useRouter();
 
   const {
     register,
@@ -29,14 +33,20 @@ export default function Home() {
   });
 
   async function handleLogin({ email, password }: LoginForm) {
-    try {
-      login({
-        email,
-        password,
+    const data = await login({
+      email,
+      password,
+    });
+
+    if (data?.error) {
+      openModal({
+        title: "Erro ao fazer login",
+        description: "Verifique se o e-mail e senha estão corretos",
+        type: "error",
       });
-    } catch (error) {
-      console.log(error);
     }
+
+    push("/dashboard");
   }
 
   return (

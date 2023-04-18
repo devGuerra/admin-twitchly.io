@@ -5,7 +5,7 @@ type ModalProps = {
   title: string;
   description: string;
   type: "success" | "error" | "confirm";
-  onConfirm: () => Promise<void> | void;
+  onConfirm?: () => Promise<void> | void;
 };
 
 type ModalContextType = {

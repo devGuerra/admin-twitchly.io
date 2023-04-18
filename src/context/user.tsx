@@ -1,4 +1,5 @@
 import { storageTokens } from "@/config/storageTokens";
+import { useModal } from "@/hooks/modal";
 import api from "@/services/api";
 import { useRouter } from "next/router";
 import { destroyCookie, setCookie, parseCookies } from "nookies";
@@ -21,7 +22,7 @@ type User = {
 
 type UserContextType = {
   user: User | null;
-  login: ({}: UserLoginProps) => void;
+  login: ({}: UserLoginProps) => Promise<any>;
   logout: () => void;
 };
 
@@ -31,13 +32,14 @@ type UserProviderProps = {
 
 export const UserContext = createContext<UserContextType>({
   user: {} as any,
-  login: () => {},
+  login: () => new Promise(() => {}),
   logout: () => {},
 });
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState({} as User | null);
   const { push, pathname } = useRouter();
+  const { openModal } = useModal();
 
   useEffect(() => {
     const cookies = parseCookies();
@@ -52,7 +54,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   }, [pathname]);
 
-  async function login({ email, password }: UserLoginProps) {
+  async function login({ email, password }: UserLoginProps): Promise<any> {
     try {
       const response = await api.post("/auth/sessions", {
         email,
@@ -78,9 +80,11 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         }
       );
 
-      push("/dashboard");
+      return response.data;
     } catch (error) {
-      throw new Error("Email ou senha inválidos");
+      return {
+        error: true,
+      };
     }
   }
 
