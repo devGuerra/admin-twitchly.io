@@ -188,6 +188,7 @@ export default function Home() {
         title="Email cadastrado"
         description="Seu email foi cadastrado com sucesso, em breve você receberá atualizações sobre nossa plataforma."
         onClose={() => setOpenModal(false)}
+        onConfirm={() => setOpenModal(false)}
       />
       <Footer />
     </>
