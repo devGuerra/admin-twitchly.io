@@ -53,20 +53,17 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
           )
         )}
         <li className="relative px-6 py-3">
-          <a
-            href={"/"}
-            className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800`}
+          <div
             onClick={() =>
               signOut({
-                redirect: true,
+                callbackUrl: "/",
               })
             }
+            className="flex flex-row gap-4 items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 cursor-pointer"
           >
-            <div className="flex flex-row gap-4 items-center">
-              <SignOut size={24} />
-              <span className="text-md font-semibold">Sair</span>
-            </div>
-          </a>
+            <SignOut size={24} />
+            <span className="text-md font-semibold">Sair</span>
+          </div>
         </li>
       </ul>
     </div>
