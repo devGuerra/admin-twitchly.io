@@ -73,7 +73,7 @@ export default function Account() {
                   name="username"
                   id="username"
                   autoComplete="username"
-                  className="block flex-1 border-0 bg-transparent py-2 pl-1 t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
+                  className="block flex-1 border-0 bg-transparent py-2 pl-1 t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6 w-full"
                   placeholder="canilfeliz"
                 />
               </div>
