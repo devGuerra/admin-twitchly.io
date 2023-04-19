@@ -6,10 +6,10 @@ import { Transition } from "@headlessui/react";
 import { headerLinks } from ".";
 import { useSidebar } from "@/hooks/sidebar";
 import { useRouter } from "next/router";
-import { useUser } from "@/hooks/user";
+import { useSession } from "next-auth/react";
 
 export function HeaderMobile() {
-  const { user } = useUser();
+  const { status, data } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const { toggleSidebar } = useSidebar();
   const { pathname } = useRouter();
@@ -23,7 +23,7 @@ export function HeaderMobile() {
   };
 
   function renderAction() {
-    if (!user?.id) {
+    if (status === "unauthenticated") {
       return (
         <Link href="/dashboard" className="text-md font-semibold ">
           <p className="font-bold">Login</p>
@@ -31,9 +31,9 @@ export function HeaderMobile() {
       );
     }
 
-    if (pathname === "/dashboard") {
+    if (pathname === "/dashboard" && data?.user.slug) {
       return (
-        <Link href="/canil" className="text-md font-semibold ">
+        <Link href={data?.user.slug} className="text-md font-semibold ">
           <p className="font-bold">Meu Site</p>
         </Link>
       );

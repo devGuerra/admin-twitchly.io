@@ -3,9 +3,8 @@ import Link from "next/link";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { useRouter } from "next/router";
 import routes, { routeIsActive } from "./routes";
-import * as Icon from "@phosphor-icons/react/dist/icons/AddressBook";
 import { SignOut } from "@phosphor-icons/react";
-import { useUser } from "@/hooks/user";
+import { signOut } from "next-auth/react";
 
 interface ISidebarContent {
   linkClicked: () => void;
@@ -13,7 +12,6 @@ interface ISidebarContent {
 
 function SidebarContent({ linkClicked }: ISidebarContent) {
   const { pathname } = useRouter();
-  const { logout } = useUser();
 
   function renderIcon(icon: any) {
     const IconComponent = icon;
@@ -58,7 +56,11 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
           <a
             href={"/"}
             className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800`}
-            onClick={logout}
+            onClick={() =>
+              signOut({
+                redirect: true,
+              })
+            }
           >
             <div className="flex flex-row gap-4 items-center">
               <SignOut size={24} />

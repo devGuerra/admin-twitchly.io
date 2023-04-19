@@ -6,10 +6,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { useUser } from "@/hooks/user";
 import { useModal } from "@/hooks/modal";
 import { useRouter } from "next/router";
+import { signIn, useSession } from "next-auth/react";
 
 const loginSchema = z.object({
   email: z.string().email("Informe um e-mail válido"),
@@ -19,9 +18,7 @@ const loginSchema = z.object({
 type LoginForm = z.infer<typeof loginSchema>;
 
 export default function Home() {
-  const { login } = useUser();
   const { openModal } = useModal();
-  const { push } = useRouter();
 
   const {
     register,
@@ -33,9 +30,10 @@ export default function Home() {
   });
 
   async function handleLogin({ email, password }: LoginForm) {
-    const data = await login({
+    const data = await signIn("credentials", {
       email,
       password,
+      callbackUrl: "/dashboard",
     });
 
     if (data?.error) {
@@ -45,8 +43,6 @@ export default function Home() {
         type: "error",
       });
     }
-
-    window.location.reload();
   }
 
   return (

@@ -2,17 +2,17 @@ import Image from "next/image";
 import { UserCircle } from "@phosphor-icons/react";
 import Link from "next/link";
 import { headerLinks } from ".";
-import { useUser } from "@/hooks/user";
 import { useRouter } from "next/router";
 import { protectedRoutes } from "@/config/protectedRoutes";
+import { useSession } from "next-auth/react";
 
 export function HeaderDesktop() {
-  const { user } = useUser();
+  const { status, data } = useSession();
 
   const { pathname } = useRouter();
 
   function renderAction() {
-    if (!user?.id) {
+    if (status === "unauthenticated") {
       return (
         <Link
           href="/login"
@@ -27,7 +27,7 @@ export function HeaderDesktop() {
     if (protectedRoutes.includes(pathname)) {
       return (
         <Link
-          href={`/${user.slug}`}
+          href={`/${data?.user.slug}`}
           className="flex items-center gap-2 w-32 justify-end"
         >
           <UserCircle size={24} />

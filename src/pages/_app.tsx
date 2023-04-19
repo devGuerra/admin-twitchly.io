@@ -3,9 +3,9 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { NextSeo } from "next-seo";
 import NextNProgress from "nextjs-progressbar";
+import { SessionProvider } from "next-auth/react";
 
 import { defaultSEOConfig } from "../../seo-config.config";
-import { UserProvider } from "@/context/user";
 import { ModalProvider } from "@/context/ModalContext";
 
 const poppins = Poppins({
@@ -51,9 +51,9 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <div className={poppins.className}>
         <ModalProvider>
-          <UserProvider>
+          <SessionProvider session={pageProps.session}>
             <Component {...pageProps} />
-          </UserProvider>
+          </SessionProvider>
         </ModalProvider>
       </div>
     </>

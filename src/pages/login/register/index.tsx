@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/router";
 
 import { Button } from "@/components/Button";
 import { api } from "@/services/api";
-import { useRouter } from "next/router";
 
 const registerSchema = z.object({
   email: z.string().email("Informe um e-mail válido"),

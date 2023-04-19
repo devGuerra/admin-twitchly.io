@@ -1,26 +1,15 @@
-// middleware.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import nookies from "nookies";
-import { storageTokens } from "./config/storageTokens";
-import { useUser } from "./hooks/user";
+import { withAuth } from "next-auth/middleware"
 
-// This function can be marked `async` if using `await` inside
-export async function middleware(request: NextRequest) {
-  const token = request.cookies.get(storageTokens.token)
+export default withAuth(
+  function middleware(req) {
 
-  if (request.nextUrl.pathname.includes('/login') && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token?.email,
+
+    },
   }
+)
 
-  if (request.nextUrl.pathname.includes('/dashboard') && !token) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-
-
-  return NextResponse.next();
-}
-
-export const config = {
-  matcher: ['/dashboard/:path*', '/login/:path*'],
-}
+export const config = { matcher: ["/dashboard/:path*",] }

@@ -1,17 +1,17 @@
 import { PetCard } from "@/components/PetCard";
 import { storageTokens } from "@/config/storageTokens";
 import Layout from "@/containers/Layout";
-import { useUser } from "@/hooks/user";
 import { GetServerSideProps } from "next";
+import { useSession } from "next-auth/react";
 import nookies from "nookies";
 
 export default function Dashboard() {
-  const { user } = useUser();
+  const { data } = useSession();
 
   return (
     <Layout>
       <div className="flex  flex-col gap-4">
-        <h2 className="text-xl font-bold">Bem vindo, {user?.name}</h2>
+        <h2 className="text-xl font-bold">Bem vindo, {data?.user?.name}</h2>
 
         {/* Estatísticas */}
 
