@@ -3,7 +3,6 @@ import { storageTokens } from "@/config/storageTokens";
 import Layout from "@/containers/Layout";
 import { GetServerSideProps } from "next";
 import { useSession } from "next-auth/react";
-import nookies from "nookies";
 
 export default function Dashboard() {
   const { data } = useSession();
@@ -57,22 +56,3 @@ export default function Dashboard() {
     </Layout>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = nookies.get(ctx);
-
-  const token = cookies[storageTokens.token];
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
