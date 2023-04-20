@@ -45,7 +45,7 @@ export default function Account() {
           <div className="flex flex-col gap-4 max-w-2xl pb-12">
             <div className="col-span-full">
               <label
-                htmlFor="photo"
+                htmlFor="files"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Fotos do Filhote
@@ -59,7 +59,7 @@ export default function Account() {
                   onChange={handleFile}
                   className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
                   multiple={false}
-                  name="files[]"
+                  name="files"
                 />
                 <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
                   <div className="flex flex-col">
@@ -103,11 +103,12 @@ export default function Account() {
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Titulo
+                title
               </label>
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                 <input
                   type="text"
+                  id="title"
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Digite o titulo do seu anuncio"
                 />
@@ -115,7 +116,7 @@ export default function Account() {
             </div>
             <div className="sm:col-span-2">
               <label
-                htmlFor="username"
+                htmlFor="breed"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Raça
@@ -125,12 +126,13 @@ export default function Account() {
                   type="text"
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Digite a raça"
+                  id="breed"
                 />
               </div>
             </div>
             <div className="sm:col-span-2">
               <label
-                htmlFor="username"
+                htmlFor="dateOfBirth"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Data de Nascimento
@@ -140,6 +142,8 @@ export default function Account() {
                   type="date"
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Seleciona a data de nascimento"
+                  id="dateOfBirth"
+                  defaultValue={new Date().toISOString()}
                 />
               </div>
             </div>
@@ -147,7 +151,7 @@ export default function Account() {
             <div className="flex max-w-2xl gap-4">
               <div className="w-full">
                 <label
-                  htmlFor="username"
+                  htmlFor="gender"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Sexo
@@ -155,7 +159,7 @@ export default function Account() {
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                   <select
                     name="0"
-                    id="0"
+                    id="gender"
                     className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   >
                     <option value="0">Selecione</option>
@@ -168,7 +172,7 @@ export default function Account() {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="username"
+                htmlFor="price"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Preço
@@ -179,6 +183,7 @@ export default function Account() {
                     type="text"
                     className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                     placeholder="Digite o preço"
+                    id="price"
                   />
                 </div>
                 <div className="flex items-center justify-center ring-gray-300 w-full gap-4">
@@ -186,8 +191,9 @@ export default function Account() {
                     type="checkbox"
                     className="h-6 w-6"
                     placeholder="Digite o preço"
+                    id="price-checkbox"
                   />
-                  <label htmlFor="username">A combinar</label>
+                  <label htmlFor="price-checkbox">A combinar</label>
                 </div>
               </div>
             </div>
@@ -210,38 +216,42 @@ export default function Account() {
                   <input
                     type="checkbox"
                     className="h-6 w-6"
+                    id="microchip"
                     placeholder="Digite o preço"
                   />
-                  <label htmlFor="username">Microchip</label>
+                  <label htmlFor="microchip">Microchip</label>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     className="h-6 w-6"
                     placeholder="Digite o preço"
+                    id="vacinado"
                   />
-                  <label htmlFor="username">Vacinado</label>
+                  <label htmlFor="vacinado">Vacinado</label>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     className="h-6 w-6"
                     placeholder="Digite o preço"
+                    id="castrado"
                   />
-                  <label htmlFor="username">Castrado</label>
+                  <label htmlFor="castrado">Castrado</label>
                 </div>
               </div>
             </div>
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="username"
+                htmlFor="description"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Descrição
               </label>
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                 <textarea
+                  id="description"
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Digite a descrição"
                   maxLength={200}
