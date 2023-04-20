@@ -1,7 +1,6 @@
+import { Button } from "@/components/Button";
 import { PetCard } from "@/components/PetCard";
-import { storageTokens } from "@/config/storageTokens";
 import Layout from "@/containers/Layout";
-import { GetServerSideProps } from "next";
 import { useSession } from "next-auth/react";
 
 export default function Dashboard() {
@@ -45,7 +44,12 @@ export default function Dashboard() {
             <span className="text-md 2xl:text-lg text-right">3</span>
           </div>
         </div>
-        <h2 className="text-xl font-bold">Ultimos filhotes</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold">Ultimos filhotes</h2>
+          <a href="/dashboard/pets/add-pet">
+            <Button type="button">Adicionar Filhote</Button>
+          </a>
+        </div>
         <div className="flex flex-col gap-2 lg:flex-row lg:flex-wrap h-full  ">
           <PetCard />
           <PetCard />
