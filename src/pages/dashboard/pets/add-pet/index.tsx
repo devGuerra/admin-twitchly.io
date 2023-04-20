@@ -4,14 +4,8 @@ import { Trash } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
-interface ImageProps {
-  name: string;
-  size: number;
-  type: string;
-}
-
 export default function Account() {
-  const [files, setFiles] = useState<ImageProps[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
   const [message, setMessage] = useState("");
 
   const handleFile = (e: { target: { files: any } }) => {
