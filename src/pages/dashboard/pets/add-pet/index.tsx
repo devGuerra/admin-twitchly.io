@@ -6,28 +6,16 @@ import { v4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { File } from "buffer";
 
 const registerPetSchema = z.object({
-  photos: z.any().superRefine((value, ctx) => {
-    if (value.length > 0) {
-      const fileType = value[0]["type"];
-      const validImageTypes = ["image/jpeg", "image/png"];
-
-      if (validImageTypes.includes(fileType)) {
-        return true;
-      }
-
-      return ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Somente imagens são permitidas",
-      });
-    }
-    return ctx.addIssue({
-      code: z.ZodIssueCode.custom,
+  photos: z.any().refine(
+    (value) => {
+      return value.length > 0;
+    },
+    {
       message: "Você deve selecionar pelo menos uma foto",
-    });
-  }),
+    }
+  ),
   title: z.string().min(3, "O título deve ter no mínimo 3 caracteres"),
   description: z
     .string()
@@ -66,12 +54,16 @@ export default function Account() {
     formState: { errors },
     setError,
     setValue,
+    getValues,
   } = useForm<RegisterPetForm>({
     resolver: zodResolver(registerPetSchema),
     mode: "onChange",
+    defaultValues: {
+      photos: files,
+    },
   });
 
-  const handleFile = (e: { target: { files: File[] } }) => {
+  const handleFile = (e: { target: { files: any } }) => {
     let file = e.target.files;
 
     if (files.length >= 4) {
@@ -91,17 +83,27 @@ export default function Account() {
         value: `${v4()}.${fileExtension}`,
       });
 
-      return setFiles([newFile, ...files]);
+      setFiles([newFile, ...files]);
+    }
+    if (!files) {
+      e.target.files = null;
     }
   };
 
   const removeImage = (name: string) => {
     setError("photos", {});
-    setFiles(files.filter((x) => x.name !== name));
+    const filesFilter = files.filter((x) => x.name !== name);
+    setFiles(filesFilter);
+
+    if (!filesFilter.length) {
+      setValue("photos", []);
+    }
   };
 
   function handleRegisterPet(data: RegisterPetForm) {
-    console.log(data);
+    data.photos = files;
+
+    // TODO: Register pet
   }
 
   return (
