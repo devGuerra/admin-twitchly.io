@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 // create context
 
@@ -69,7 +63,7 @@ export const SidebarProvider = ({ children }: ISidebarPovider) => {
     }
   }, [scrollY]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (process.browser) {
       const { id, position } = storageScrollY();
       document.getElementById(id)?.scrollTo(0, position);

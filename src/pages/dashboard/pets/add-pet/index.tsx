@@ -6,16 +6,44 @@ import { v4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { File } from "buffer";
 
 const registerPetSchema = z.object({
+  photos: z.any().superRefine((value, ctx) => {
+    if (value.length > 0) {
+      const fileType = value[0]["type"];
+      const validImageTypes = ["image/jpeg", "image/png"];
+
+      if (validImageTypes.includes(fileType)) {
+        return true;
+      }
+
+      return ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Somente imagens são permitidas",
+      });
+    }
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Você deve selecionar pelo menos uma foto",
+    });
+  }),
   title: z.string().min(3, "O título deve ter no mínimo 3 caracteres"),
   description: z
     .string()
     .min(3, "A descrição deve ter no mínimo 3 caracteres")
     .max(200, "A descrição deve ter no máximo 200 caracteres"),
   breed: z.string().min(3, "A raça deve ter no mínimo 3 caracteres"),
-  dateOfBirth: z.date().max(new Date(), "A data de nascimento deve ser válida"),
-  gender: z.string().min(1, "O gênero deve ter no mínimo 1 caractere"),
+  dateOfBirth: z.string().refine((value) => {
+    return new Date(value) < new Date();
+  }),
+  gender: z.custom((value) => {
+    if (value === "Macho" || value === "Fêmea") {
+      return true;
+    } else {
+      return false;
+    }
+  }, "O gênero deve ser Macho ou Fêmea"),
   price: z.string().min(1, "O preço deve ter no mínimo 1 caractere").optional(),
   priceToNegotiate: z.boolean().optional(),
   tagPedigree: z.boolean().optional(),
@@ -28,7 +56,6 @@ type RegisterPetForm = z.infer<typeof registerPetSchema>;
 
 export default function Account() {
   const [files, setFiles] = useState<File[]>([]);
-  const [message, setMessage] = useState("");
 
   const today = new Date().setDate(new Date().getDate() - 1);
   const dateToInput = new Date(today).toISOString().split("T")[0];
@@ -37,38 +64,39 @@ export default function Account() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    setValue,
   } = useForm<RegisterPetForm>({
     resolver: zodResolver(registerPetSchema),
     mode: "onChange",
   });
 
-  const handleFile = (e: { target: { files: any } }) => {
+  const handleFile = (e: { target: { files: File[] } }) => {
     let file = e.target.files;
 
     if (files.length >= 4) {
-      setMessage("Somente 4 imagens são permitidas");
+      setError("photos", {
+        message: "Você pode selecionar no máximo 4 fotos",
+      });
       return;
     }
 
-    for (let i = 0; i < file.length; i++) {
-      const fileType = file[i]["type"];
-      const fileExtension = file[i]["name"].split(".").pop();
+    const fileType = file[0]["type"];
+    const fileExtension = file[0]["name"].split(".").pop();
 
-      const validImageTypes = ["image/jpeg", "image/png"];
+    const validImageTypes = ["image/jpeg", "image/png"];
 
-      if (validImageTypes.includes(fileType)) {
-        const newFile = new File([file[i]], `${v4()}.${fileExtension}`, {
-          type: fileType,
-        });
-        setFiles([newFile, ...files]);
-      } else {
-        setMessage("Somente imagens são permitidas");
-      }
+    if (validImageTypes.includes(fileType)) {
+      const newFile = Object.defineProperty(file[0], "name", {
+        value: `${v4()}.${fileExtension}`,
+      });
+
+      return setFiles([newFile, ...files]);
     }
   };
 
   const removeImage = (name: string) => {
-    setMessage("");
+    setError("photos", {});
     setFiles(files.filter((x) => x.name !== name));
   };
 
@@ -86,18 +114,21 @@ export default function Account() {
                 htmlFor="files"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Fotos do Filhote
+                {`Fotos do seu filhote - ${files.length}/4`}
               </label>
               <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
-                {message}
+                {errors?.photos?.message as string}
               </span>
               <div className="h-16 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
                 <input
                   type="file"
-                  onChange={handleFile}
                   className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
                   multiple={false}
-                  name="files"
+                  {...register("photos", {
+                    onChange: (e) => {
+                      handleFile(e);
+                    },
+                  })}
                 />
                 <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
                   <div className="flex flex-col">
@@ -129,7 +160,7 @@ export default function Account() {
 
                       <img
                         className="h-20 w-20 rounded object-cover"
-                        src={URL.createObjectURL(file)}
+                        src={URL.createObjectURL(file as any)}
                       />
                     </div>
                   );
@@ -237,12 +268,12 @@ export default function Account() {
                     {...register("gender")}
                   >
                     <option value="0">Selecione</option>
-                    <option value="1">Macho</option>
-                    <option value="2">Femea</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
                   </select>
                 </div>
                 <span className="flex  items-center text-[12px] text-red-500">
-                  {errors.gender?.message}
+                  {errors?.gender?.message as string}
                 </span>
               </div>
             </div>
