@@ -3,10 +3,44 @@ import Layout from "@/containers/Layout";
 import { Trash } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { v4 } from "uuid";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const registerPetSchema = z.object({
+  title: z.string().min(3, "O título deve ter no mínimo 3 caracteres"),
+  description: z
+    .string()
+    .min(3, "A descrição deve ter no mínimo 3 caracteres")
+    .max(200, "A descrição deve ter no máximo 200 caracteres"),
+  breed: z.string().min(3, "A raça deve ter no mínimo 3 caracteres"),
+  dateOfBirth: z.date().max(new Date(), "A data de nascimento deve ser válida"),
+  gender: z.string().min(1, "O gênero deve ter no mínimo 1 caractere"),
+  price: z.string().min(1, "O preço deve ter no mínimo 1 caractere").optional(),
+  priceToNegotiate: z.boolean().optional(),
+  tagPedigree: z.boolean().optional(),
+  tagVaccinated: z.boolean().optional(),
+  tagMicrochipped: z.boolean().optional(),
+  tagCastrated: z.boolean().optional(),
+});
+
+type RegisterPetForm = z.infer<typeof registerPetSchema>;
 
 export default function Account() {
   const [files, setFiles] = useState<File[]>([]);
   const [message, setMessage] = useState("");
+
+  const today = new Date().setDate(new Date().getDate() - 1);
+  const dateToInput = new Date(today).toISOString().split("T")[0];
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterPetForm>({
+    resolver: zodResolver(registerPetSchema),
+    mode: "onChange",
+  });
 
   const handleFile = (e: { target: { files: any } }) => {
     let file = e.target.files;
@@ -38,12 +72,16 @@ export default function Account() {
     setFiles(files.filter((x) => x.name !== name));
   };
 
+  function handleRegisterPet(data: RegisterPetForm) {
+    console.log(data);
+  }
+
   return (
     <Layout>
       <div className="bg-white rounded p-4">
-        <form action="">
+        <form onSubmit={handleSubmit(handleRegisterPet)}>
           <div className="flex flex-col gap-4 max-w-2xl pb-12">
-            <div className="col-span-full">
+            <div className="">
               <label
                 htmlFor="files"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -98,12 +136,13 @@ export default function Account() {
                 })}
               </div>
             </div>
-            <div className="sm:col-span-2">
+
+            <div className="">
               <label
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                title
+                Titulo
               </label>
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                 <input
@@ -111,10 +150,36 @@ export default function Account() {
                   id="title"
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Digite o titulo do seu anuncio"
+                  {...register("title")}
                 />
               </div>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.title?.message}
+              </span>
             </div>
-            <div className="sm:col-span-2">
+
+            <div className="">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Descrição
+              </label>
+              <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
+                <textarea
+                  id="description"
+                  className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
+                  placeholder="Digite a descrição"
+                  maxLength={200}
+                  {...register("description")}
+                />
+              </div>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.description?.message}
+              </span>
+            </div>
+
+            <div className="">
               <label
                 htmlFor="breed"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -127,10 +192,14 @@ export default function Account() {
                   className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Digite a raça"
                   id="breed"
+                  {...register("breed")}
                 />
               </div>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.breed?.message}
+              </span>
             </div>
-            <div className="sm:col-span-2">
+            <div className="">
               <label
                 htmlFor="dateOfBirth"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -140,12 +209,17 @@ export default function Account() {
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                 <input
                   type="date"
-                  className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
+                  className="block flex-1 border-0 bg-transparent p-2 t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                   placeholder="Seleciona a data de nascimento"
                   id="dateOfBirth"
-                  defaultValue={new Date().toISOString()}
+                  defaultValue={dateToInput}
+                  max={dateToInput}
+                  {...register("dateOfBirth")}
                 />
               </div>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.dateOfBirth?.message}
+              </span>
             </div>
 
             <div className="flex max-w-2xl gap-4">
@@ -158,19 +232,22 @@ export default function Account() {
                 </label>
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                   <select
-                    name="0"
                     id="gender"
                     className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
+                    {...register("gender")}
                   >
                     <option value="0">Selecione</option>
                     <option value="1">Macho</option>
                     <option value="2">Femea</option>
                   </select>
                 </div>
+                <span className="flex  items-center text-[12px] text-red-500">
+                  {errors.gender?.message}
+                </span>
               </div>
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="">
               <label
                 htmlFor="price"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -184,78 +261,72 @@ export default function Account() {
                     className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
                     placeholder="Digite o preço"
                     id="price"
+                    {...register("price")}
                   />
                 </div>
-                <div className="flex items-center justify-center ring-gray-300 w-full gap-4">
+                <div className="flex items-center  ring-gray-300 w-full gap-4">
                   <input
                     type="checkbox"
-                    className="h-6 w-6"
+                    className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     placeholder="Digite o preço"
-                    id="price-checkbox"
+                    id="priceToNegotiate"
                   />
-                  <label htmlFor="price-checkbox">A combinar</label>
+                  <label htmlFor="priceToNegotiate">A combinar</label>
                 </div>
               </div>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.price?.message}
+              </span>
+              <span className="flex  items-center text-[12px] text-red-500">
+                {errors.priceToNegotiate?.message}
+              </span>
             </div>
 
             <div className="flex flex-col  max-w-2xl gap-4">
               <h2 className="block text-sm font-medium leading-6 text-gray-900">
                 Tags
               </h2>
-              <div className="flex flex-wrap gap-2 justify-between">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-row flex-wrap  justify-between">
+                <div className="flex items-center gap-2 min-w-1/2 mb-4">
                   <input
                     type="checkbox"
-                    className="h-6 w-6"
+                    className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     placeholder="Digite o preço"
                     id="pedigree"
+                    {...register("tagPedigree")}
                   />
                   <label htmlFor="pedigree">Pedigree</label>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-1/2 mb-4">
                   <input
                     type="checkbox"
-                    className="h-6 w-6"
+                    className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     id="microchip"
                     placeholder="Digite o preço"
+                    {...register("tagMicrochipped")}
                   />
                   <label htmlFor="microchip">Microchip</label>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-1/2 mb-4">
                   <input
                     type="checkbox"
-                    className="h-6 w-6"
+                    className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     placeholder="Digite o preço"
                     id="vacinado"
+                    {...register("tagVaccinated")}
                   />
                   <label htmlFor="vacinado">Vacinado</label>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-1/2 mb-4">
                   <input
                     type="checkbox"
-                    className="h-6 w-6"
+                    className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     placeholder="Digite o preço"
                     id="castrado"
+                    {...register("tagCastrated")}
                   />
                   <label htmlFor="castrado">Castrado</label>
                 </div>
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Descrição
-              </label>
-              <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
-                <textarea
-                  id="description"
-                  className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
-                  placeholder="Digite a descrição"
-                  maxLength={200}
-                />
               </div>
             </div>
             <Button

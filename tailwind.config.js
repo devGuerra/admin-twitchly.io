@@ -22,7 +22,8 @@ module.exports = {
         xxs: '13rem'
       },
       minWidth: {
-        xxxs: '10rem'
+        xxxs: '10rem',
+        '1/2': '49%'
       },
       width: {
         'max-container': '70rem'

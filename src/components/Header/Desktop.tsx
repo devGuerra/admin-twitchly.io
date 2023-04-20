@@ -54,7 +54,10 @@ export function HeaderDesktop() {
           pathname.includes("dashboard") ? "" : "lg:w-max-container"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2 w-32 py-4">
+        <Link
+          href={pathname === "/dashboard" ? "/" : "/dashboard"}
+          className="flex items-center gap-2 w-32 py-4"
+        >
           <Image
             src="/images/logo-name.svg"
             alt="logo"

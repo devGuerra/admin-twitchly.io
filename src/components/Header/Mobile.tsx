@@ -49,7 +49,10 @@ export function HeaderMobile() {
   return (
     <div className="relative lg:hidden">
       <header className=" flex items-center justify-between px-6 py-4 bg-white shadow-sm ">
-        <Link href="/" className="flex items-center gap-2 ">
+        <Link
+          href={pathname === "/dashboard" ? "/" : "/dashboard"}
+          className="flex items-center gap-2 "
+        >
           <Image
             src="/images/logo-name.svg"
             alt="logo"
