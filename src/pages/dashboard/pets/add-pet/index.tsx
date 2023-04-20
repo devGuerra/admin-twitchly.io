@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const registerPetSchema = z.object({
   photos: z.any().refine(
     (value) => {
-      return value.length > 0;
+      return true;
     },
     {
       message: "Você deve selecionar pelo menos uma foto",
@@ -32,7 +32,7 @@ const registerPetSchema = z.object({
       return false;
     }
   }, "O gênero deve ser Macho ou Fêmea"),
-  price: z.string().min(1, "O preço deve ter no mínimo 1 caractere").optional(),
+  price: z.string().optional(),
   priceToNegotiate: z.boolean().optional(),
   tagPedigree: z.boolean().optional(),
   tagVaccinated: z.boolean().optional(),
@@ -54,7 +54,8 @@ export default function Account() {
     formState: { errors },
     setError,
     setValue,
-    getValues,
+    setFocus,
+    watch,
   } = useForm<RegisterPetForm>({
     resolver: zodResolver(registerPetSchema),
     mode: "onChange",
@@ -62,6 +63,10 @@ export default function Account() {
       photos: files,
     },
   });
+
+  useEffect(() => {
+    setValue("photos", errors);
+  }, [errors]);
 
   const handleFile = (e: { target: { files: any } }) => {
     let file = e.target.files;
@@ -101,8 +106,26 @@ export default function Account() {
   };
 
   function handleRegisterPet(data: RegisterPetForm) {
-    data.photos = files;
+    if (!files.length) {
+      setError("photos", {
+        message: "Você deve selecionar pelo menos uma foto",
+        type: "required",
+      });
+      setFocus("photos");
+      return;
+    }
 
+    if (!data.price && !data.priceToNegotiate) {
+      setError("price", {
+        message: "Você deve informar o preço ou negociar",
+        type: "required",
+      });
+      setFocus("price");
+      return;
+    }
+
+    data.photos = files;
+    console.log(data);
     // TODO: Register pet
   }
 
@@ -287,22 +310,24 @@ export default function Account() {
               >
                 Preço
               </label>
-              <div className="flex  flex-1 flex-col gap-2 lg:flex-row">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset w-full">
+              <div className="flex flex-1  gap-2 flex-col md:flex-row">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset min-w-1/2 w-full md:w-min">
                   <input
                     type="text"
-                    className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent p-2  t placeholder:text-gray-400 focus:outline-0 ring-0 sm:text-sm sm:leading-6  disabled:opacity-40 disabled:cursor-not-allowed"
                     placeholder="Digite o preço"
                     id="price"
+                    disabled={watch("priceToNegotiate")}
                     {...register("price")}
                   />
                 </div>
-                <div className="flex items-center  ring-gray-300 w-full gap-4">
+                <div className="flex items-center  ring-gray-300  gap-4 min-w-1/2 w-min">
                   <input
                     type="checkbox"
                     className="h-6 w-6 lg:h-4 lg:w-4 cursor-pointer"
                     placeholder="Digite o preço"
                     id="priceToNegotiate"
+                    {...register("priceToNegotiate")}
                   />
                   <label htmlFor="priceToNegotiate">A combinar</label>
                 </div>
