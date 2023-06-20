@@ -1,5 +1,7 @@
 import NextAuth, { CookiesOptions, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import TwitchProvider from "next-auth/providers/twitch";
+
 import api from "@/services/api";
 
 const authOptions: NextAuthOptions = {
@@ -37,6 +39,10 @@ const authOptions: NextAuthOptions = {
         };
       },
     }),
+    TwitchProvider({
+      clientId: process.env.TWITCH_CLIENT_ID!,
+      clientSecret: process.env.TWITCH_CLIENT_SECRET!
+    })
   ],
   pages: {
     signIn: "/login",

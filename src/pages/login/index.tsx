@@ -30,7 +30,7 @@ export default function Home() {
   });
 
   async function handleLogin({ email, password }: LoginForm) {
-    const data = await signIn("credentials", {
+    const data = await signIn("twitch", {
       email,
       password,
       callbackUrl: "/dashboard",
