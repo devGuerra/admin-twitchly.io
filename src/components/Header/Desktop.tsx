@@ -43,7 +43,7 @@ export function HeaderDesktop() {
         }`}
       >
         <Link
-          href={pathname === "/dashboard" ? "/" : "/dashboard"}
+          href={pathname === "/dashboard" ? "/" : "/"}
           className="flex items-center gap-2 w-32 py-4"
         >
           <Image
