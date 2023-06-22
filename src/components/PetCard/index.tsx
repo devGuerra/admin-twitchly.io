@@ -6,7 +6,7 @@ export const PetCard: React.FC = () => {
   return (
     <Link
       href="#"
-      className="flex flex-row lg:flex-col lg:max-w-xxs lg:min-w-xxs  rounded-lg overflow-hidden bg-white"
+      className="flex flex-row lg:flex-col lg:max-w-xxs lg:min-w-xxs  rounded-lg overflow-hidden "
     >
       <div className="">
         <Image

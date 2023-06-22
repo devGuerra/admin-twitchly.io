@@ -24,7 +24,7 @@ export default function User({ user }: User) {
     <>
       <Header />
       <NextSeo title={`${user.slug}`} />
-      <main className="bg-white">
+      <main className="">
         {/* Hero */}
         <section className="mt-8 mb-48 flex justify-center items-center container lg:w-max-container mx-auto  bg-red-600 rounded p-8">
           <div className="flex flex-col flex-1 justify-center items-center text-center">

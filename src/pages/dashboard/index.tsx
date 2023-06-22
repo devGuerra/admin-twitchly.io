@@ -14,7 +14,7 @@ export default function Dashboard() {
         {/* Estatísticas */}
 
         <div className="flex flex-col justify-between lg:flex-row gap-2 lg:gap-4">
-          <div className="flex flex-row items-center justify-between  bg-white p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
+          <div className="flex flex-row items-center justify-between   p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
             <div className="">
               <h3 className="font-semibold text-sm 2xl:text-lg">
                 Visualizações
@@ -25,7 +25,7 @@ export default function Dashboard() {
             </div>
             <span className="text-md 2xl:text-lg text-right">1.123.0000</span>
           </div>
-          <div className="flex flex-row items-center justify-between  bg-white p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
+          <div className="flex flex-row items-center justify-between   p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
             <div>
               <h3 className="font-semibold text-sm 2xl:text-lg">Filhotes</h3>
               <span className="text-xs 2xl:text-md text-zinc-400">
@@ -34,7 +34,7 @@ export default function Dashboard() {
             </div>
             <span className="text-md 2xl:text-lg text-right">12</span>
           </div>
-          <div className="flex flex-row items-center justify-between  bg-white p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
+          <div className="flex flex-row items-center justify-between   p-2 lg:p-4 2xl:p-6 rounded-lg w-full">
             <div>
               <h3 className="font-semibold text-sm 2xl:text-lg">Contatos</h3>
               <span className="text-xs 2xl:text-md text-zinc-400">

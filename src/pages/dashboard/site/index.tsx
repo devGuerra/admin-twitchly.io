@@ -4,7 +4,7 @@ import Layout from "@/containers/Layout";
 export default function Account() {
   return (
     <Layout>
-      <div className="bg-white rounded p-4">
+      <div className=" rounded p-4">
         <form action="">
           <div className="flex flex-col gap-4 max-w-2xl pb-12">
             <div className="col-span-full">
@@ -66,7 +66,7 @@ export default function Account() {
               </label>
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-2xl">
                 <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                  seufilhote.com.br/
+                  twitchly.io
                 </span>
                 <input
                   type="text"

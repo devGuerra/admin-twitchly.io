@@ -18,20 +18,8 @@ export function HeaderDesktop() {
           href="/login"
           className="flex items-center gap-2 w-32 justify-end"
         >
-          <UserCircle size={24} />
-          <p className="text-sm font-bold">Login</p>
-        </Link>
-      );
-    }
-
-    if (protectedRoutes.includes(pathname)) {
-      return (
-        <Link
-          href={`/${data?.user.slug}`}
-          className="flex items-center gap-2 w-32 justify-end"
-        >
-          <UserCircle size={24} />
-          <p className="text-xs font-semibold py-8">Meu site</p>
+          <UserCircle size={24} color="white" />
+          <p className="text-sm font-bold text-white">Login</p>
         </Link>
       );
     }
@@ -41,14 +29,14 @@ export function HeaderDesktop() {
         href="/dashboard"
         className="flex items-center gap-2 w-32 justify-end"
       >
-        <UserCircle size={24} />
-        <p className="text-xs font-semibold py-8">Dashboard</p>
+        <UserCircle size={24} color="white" />
+        <p className="text-xs font-semibold py-8 text-white">Dashboard</p>
       </Link>
     );
   }
 
   return (
-    <div className="px-8  bg-white drop-shadow-sm ">
+    <div className="px-8  bg-gray-900 drop-shadow-sm ">
       <nav
         className={`items-center justify-between hidden lg:flex  mx-auto ${
           pathname.includes("dashboard") ? "" : "lg:w-max-container"
@@ -71,7 +59,7 @@ export function HeaderDesktop() {
               <Link
                 href={link.href}
                 key={link.name}
-                className="text-xs font-semibold py-8"
+                className="text-xs font-semibold py-8 text-white"
               >
                 {link.name}
               </Link>
@@ -79,7 +67,7 @@ export function HeaderDesktop() {
           </div>
         )}
 
-        {renderAction()}
+        {/* {renderAction()} */}
 
         {/* <div className="">
         <Menu as="div" className="relative">
@@ -96,7 +84,7 @@ export function HeaderDesktop() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-2 w-32 p-4 flex justify-center rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 w-32 p-4 flex justify-center rounded-md bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>{({ active }) => <button>Edit</button>}</Menu.Item>
             </Menu.Items>
           </Transition>

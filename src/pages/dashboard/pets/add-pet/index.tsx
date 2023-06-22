@@ -131,7 +131,7 @@ export default function Account() {
 
   return (
     <Layout>
-      <div className="bg-white rounded p-4">
+      <div className=" rounded p-4">
         <form onSubmit={handleSubmit(handleRegisterPet)}>
           <div className="flex flex-col gap-4 max-w-2xl pb-12">
             <div className="">

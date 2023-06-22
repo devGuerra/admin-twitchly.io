@@ -28,7 +28,7 @@ function MobileSidebar() {
           <aside
             id="mobileSidebar"
             ref={sidebarRef}
-            className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white  lg:hidden"
+            className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-16 overflow-y-auto   lg:hidden"
           >
             <SidebarContent linkClicked={linkClickedHandler} />
           </aside>

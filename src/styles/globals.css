@@ -3,18 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --background-light: #ecedf2;
-  --color: #2e2d37;
+  --background-light: #131727;
+  --color: white;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-light: #ecedf2;
-    --color: #2e2d37;
+    --background-light: #131727;
+    --color: white;
   }
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }

@@ -54,7 +54,7 @@ export function Alert({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <div className="relative overflow-hidden rounded-lg shadow-xl ">
-                <div className="bg-white p-6 max-w-lg">
+                <div className=" p-6 max-w-lg">
                   <div className="flex flex-col items-center lg:items-left">
                     <div className="flex flex-shrink-0 items-center justify-center h-10 w-10 lg:h-12 lg:w-12">
                       {type === "success" ? (
@@ -82,7 +82,7 @@ export function Alert({
                   <Button
                     onClick={onClose}
                     type="button"
-                    className={`bg-white hover:opacity-70 hover:bg-white`}
+                    className={` hover:opacity-70 hover:`}
                   >
                     <p className="text-black font-semibold">Fechar</p>
                   </Button>

@@ -4,9 +4,9 @@ import { defaultSEOConfig } from "../../seo-config.config";
 
 export default function Document() {
   return (
-    <Html lang="pt-BR">
+    <Html lang="en">
       <Head />
-      <body>
+      <body className="bg-gray-800">
         <Main />
         <NextScript />
       </body>

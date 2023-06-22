@@ -1,23 +1,23 @@
 /** @type {import('next-seo').DefaultSeoProps} */
 export const defaultSEOConfig = {
-  title: "Seu Filhote",
-  titleTemplate: "%s | Seu Filhote",
-  defaultTitle: "Seu Filhote",
+  title: "Twitchly",
+  titleTemplate: "%s | Twitchly",
+  defaultTitle: "Twitchly",
   description:
-    "Crie um site para site para seu Canil com seufilhote.com.br. Economize tempo e dinheiro com nosso catálogo online e compartilhe com seus clientes a história de seus filhotes.",
-  canonical: "https://seufilhote.com.br/",
+    "Improve your growth on Twitch with Twitchly. Get more followers, viewers and subscribers.",
+  canonical: "https://twitchly.io",
   openGraph: {
-    url: "https://seufilhote.com.br/",
-    title: "seufilhote.com.br",
+    url: "https://twitchly.io",
+    title: "twitchly.io",
     description:
-      "Crie um site para site para seu Canil com seufilhote.com.br. Economize tempo e dinheiro com nosso catálogo online e compartilhe com seus clientes a história de seus filhotes.",
+      "Improve your growth on Twitch with Twitchly. Get more followers, viewers and subscribers.",
     images: [
       {
-        url: "https://seufilhote.com.br/api/opengraph",
-        alt: "Seu filhote - Crie um site para seu Canil",
+        url: "https://twitchly.io/api/opengraph",
+        alt: "Twitchly - improve your growth",
       },
     ],
-    site_name: "seufilhote.com.br",
+    site_name: "twitchly.io",
   },
   twitter: {
     handle: "@dev_guerra",

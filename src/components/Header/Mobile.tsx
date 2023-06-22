@@ -25,7 +25,7 @@ export function HeaderMobile() {
   function renderAction() {
     if (status === "unauthenticated") {
       return (
-        <Link href="/dashboard" className="text-md font-semibold ">
+        <Link href="/dashboard" className="text-md font-semibold text-white">
           <p className="font-bold">Login</p>
         </Link>
       );
@@ -33,14 +33,17 @@ export function HeaderMobile() {
 
     if (pathname === "/dashboard" && data?.user.slug) {
       return (
-        <Link href={data?.user.slug} className="text-md font-semibold ">
+        <Link
+          href={data?.user.slug}
+          className="text-md font-semibold text-white "
+        >
           <p className="font-bold">Meu Site</p>
         </Link>
       );
     }
 
     return (
-      <Link href="/dashboard" className="text-md font-semibold ">
+      <Link href="/dashboard" className="text-md font-semibold text-white">
         <p className="font-bold">Dashboard</p>
       </Link>
     );
@@ -48,7 +51,7 @@ export function HeaderMobile() {
 
   return (
     <div className="relative lg:hidden">
-      <header className=" flex items-center justify-between px-6 py-4 bg-white shadow-sm ">
+      <header className=" flex items-center justify-between px-6 py-4 bg-gray-900 shadow-sm ">
         <Link
           href={pathname === "/dashboard" ? "/" : "/dashboard"}
           className="flex items-center gap-2 "
@@ -62,7 +65,11 @@ export function HeaderMobile() {
         </Link>
 
         <div className="flex items-center gap-2" onClick={handleMenu}>
-          {isOpen ? <X size={24} /> : <List size={24} />}
+          {isOpen ? (
+            <X size={24} color="white" />
+          ) : (
+            <List size={24} color="white" />
+          )}
         </div>
       </header>
       <nav onClick={() => setIsOpen(!isOpen)}>
@@ -76,19 +83,19 @@ export function HeaderMobile() {
           leaveTo="opacity-0 -translate-x-4"
           className="w-3/4"
         >
-          <div className={`w-full absolut h-screen bg-white`}>
+          <div className={`w-full absolut h-screen bg-gray-900`}>
             <ul className="p-6 ">
               <li className="flex flex-col gap-4 ">
                 {headerLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-md font-semibold "
+                    className="text-md font-semibold text-white"
                   >
                     {link.name}
                   </Link>
                 ))}
-                {renderAction()}
+                {/* {renderAction()} */}
               </li>
             </ul>
           </div>

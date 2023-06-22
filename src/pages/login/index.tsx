@@ -57,7 +57,7 @@ export default function Home() {
               height={32}
             />
           </Link>
-          <div className="bg-white rounded-md flex flex-col p-6 lg:p-12 gap-4  w-full shadow-lg">
+          <div className=" rounded-md flex flex-col p-6 lg:p-12 gap-4  w-full shadow-lg">
             <p className="text-2xl font-bold">Entrar</p>
             <p className="text-sm text-gray-600">Digite o seu e-mail e senha</p>
             <form

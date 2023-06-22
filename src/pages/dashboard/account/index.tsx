@@ -4,7 +4,7 @@ import Layout from "@/containers/Layout";
 export default function Account() {
   return (
     <Layout>
-      <div className="bg-white rounded p-4">
+      <div className=" rounded p-4">
         <form action="">
           <div className="flex flex-col gap-4 max-w-2xl pb-12">
             <div className="flex flex-col lg:flex-row max-w-2xl gap-4">
