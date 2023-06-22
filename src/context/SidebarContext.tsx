@@ -17,9 +17,15 @@ interface ISidebarContext {
 const SidebarContext = React.createContext<ISidebarContext>({
   isSidebarOpen: false,
   scrollY: { id: null, position: 0 },
-  closeSidebar: () => {},
-  toggleSidebar: () => {},
-  saveScroll: (el: HTMLElement | null) => {},
+  closeSidebar: () => {
+    console.warn("no SidebarProvider");
+  },
+  toggleSidebar: () => {
+    console.warn("no SidebarProvider");
+  },
+  saveScroll: (el: HTMLElement | null) => {
+    console.warn("no SidebarProvider");
+  },
 });
 
 interface ISidebarPovider {

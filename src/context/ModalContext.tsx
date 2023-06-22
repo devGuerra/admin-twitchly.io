@@ -9,7 +9,7 @@ type ModalProps = {
 };
 
 type ModalContextType = {
-  openModal: ({}: ModalProps) => void;
+  openModal: ({ title, description, type, onConfirm }: ModalProps) => void;
   closeModal: () => void;
 };
 
@@ -18,8 +18,12 @@ type ModalProviderProps = {
 };
 
 export const ModalContext = createContext<ModalContextType>({
-  openModal: () => {},
-  closeModal: () => {},
+  openModal: ({ title, description, type, onConfirm }: ModalProps) => {
+    console.log(title, description, type, onConfirm);
+  },
+  closeModal: function () {
+    console.log("close");
+  },
 });
 
 export const ModalProvider = ({ children }: ModalProviderProps) => {

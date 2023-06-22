@@ -1,15 +1,9 @@
-import { withAuth } from "next-auth/middleware"
+import { withAuth } from "next-auth/middleware";
 
-export default withAuth(
-  function middleware(req) {
-
+export default withAuth({
+  callbacks: {
+    authorized: ({ token }) => !!token?.email,
   },
-  {
-    callbacks: {
-      authorized: ({ token }) => !!token?.email,
+});
 
-    },
-  }
-)
-
-export const config = { matcher: ["/dashboard/:path*",] }
+export const config = { matcher: ["/dashboard/:path*"] };

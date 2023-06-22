@@ -69,7 +69,7 @@ export default function Account() {
   }, [errors]);
 
   const handleFile = (e: { target: { files: any } }) => {
-    let file = e.target.files;
+    const file = e.target.files;
 
     if (files.length >= 4) {
       setError("photos", {

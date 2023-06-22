@@ -7,11 +7,6 @@ import { Transition } from "@headlessui/react";
 import { Drop } from "@phosphor-icons/react";
 import { useSidebar } from "@/hooks/sidebar";
 
-function Icon() {
-  // @ts-ignore
-  return null;
-}
-
 interface ISidebarSubmenu {
   route: IRoute;
   linkClicked: () => void;

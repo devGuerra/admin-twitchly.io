@@ -25,7 +25,7 @@ export default async function () {
           <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-center p-8 ">
             <h2 tw="flex flex-col text-4xl sm:text-4xl font-bold tracking-tight text-gray-900 text-center items-center">
               <img
-                src="https://www.twitchly.io/images/logo.svg"
+                src="https://twitchly.io/images/logo.svg"
                 tw="w-12 object-cover rounded-md mx-auto"
                 alt="Imagem mostra um exemplo do site"
               />

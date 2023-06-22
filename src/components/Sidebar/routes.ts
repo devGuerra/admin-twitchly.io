@@ -11,11 +11,11 @@ interface IRoute {
   icon?: React.FC
   name: string
   routes?: IRoute[]
-  checkActive?(pathname: String, route: IRoute): boolean
+  checkActive?(pathname: string, route: IRoute): boolean
   exact?: boolean
 }
 
-export function routeIsActive(pathname: String, route: IRoute): boolean {
+export function routeIsActive(pathname: string, route: IRoute): boolean {
   if (route.checkActive) {
     return route.checkActive(pathname, route)
   }
